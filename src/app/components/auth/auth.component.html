@@ -1,0 +1,26 @@
+<body>
+<div *ngIf="!isLogged()">
+
+  <div>
+    <h2>Авторизация</h2>
+    <input [(ngModel)]="authData.login" placeholder="Логин">
+    <input [(ngModel)]="authData.password" type="password" placeholder="Пароль">
+    <button (click)="signIn()">Вход</button>
+  </div>
+
+  <div>
+    <h2>Регистрация</h2>
+    <input [(ngModel)]="registerData.firstName" placeholder="Имя">
+    <input [(ngModel)]="registerData.secondName" placeholder="Фамилия">
+    <input [(ngModel)]="registerData.authData.login" placeholder="Логин">
+    <input [(ngModel)]="registerData.authData.password" type="password" placeholder="Пароль">
+    <button (click)="signUp()">Регистрация</button>
+  </div>
+
+</div>
+
+<div *ngIf="isLogged()">
+  Добро пожаловать, {{user.login}}!
+  <button (click)="signOut()">Выход</button>
+</div>
+</body>
