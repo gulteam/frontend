@@ -8,11 +8,15 @@ import {ConnectionService} from "./service/connection.service";
 import {UserService} from "./service/user.service";
 import {AuthComponent} from "./components/auth/auth.component";
 import {AppRoutingModule} from "./module/app-routing.module";
+import {CourseComponent} from "./components/course/course.component";
+import {TestComponent} from "./components/test/test.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent
+    AuthComponent,
+    CourseComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
