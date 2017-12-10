@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../service/user.service";
 import {Course} from "../../entity/course";
 import {Location} from '@angular/common';
+import {CourseService} from '../../service/course.service';
 
 @Component({
   selector: 'app-course',
@@ -11,34 +12,35 @@ import {Location} from '@angular/common';
 })
 export class CourseComponent implements OnInit {
   course: Course;
-  creatingNew: boolean;
   attestationForms: string[];
-  basicEducationProgramId: number;
 
-  constructor(private userService: UserService, private router: Router, private location: Location, private route: ActivatedRoute) {
+  constructor(private userService: UserService,
+              private router: Router,
+              private location: Location,
+              private route: ActivatedRoute,
+              private courseService: CourseService) {
   }
 
   ngOnInit() {
-    this.basicEducationProgramId = +this.route.snapshot.paramMap.get('programId');
-    let id = this.route.snapshot.paramMap.get('id');
-    this.creatingNew = (id == 'new');
+    let id = +this.route.snapshot.paramMap.get('id');
 
-    console.log(this.route.snapshot.paramMap);
-    console.log(this.creatingNew);
-
-    if(this.creatingNew){
-      this.course = new Course();
-    }else{
-      // Load from server
-    }
+    this.courseService.getCourse(id).subscribe(course=>{
+      this.course = course;
+    })
   }
 
   save(){
-
+    this.courseService.saveCourse(this.course).subscribe(message=>{
+      console.log('Course saved');
+      this.location.back();
+    });
   }
 
-  create(){
-
+  delete(){
+    this.courseService.deleteCourse(this.course.id).subscribe(message=>{
+      console.log('Course deleted');
+      this.location.back();
+    });
   }
 
   cancel(){

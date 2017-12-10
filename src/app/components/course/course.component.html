@@ -1,13 +1,7 @@
 <body>
 <div *ngIf="course">
 
-  <div *ngIf="!creatingNew">
-    Курс {{course.id}}
-  </div>
-
-  <div *ngIf="creatingNew">
-    Новый курс
-  </div>
+  Курс {{course.id}}
 
   Название:
   <input type="text" [(ngModel)]="course.name">
@@ -25,14 +19,9 @@
     </select>
   </div>
 
-  <div *ngIf="!creatingNew">
-    <button (click)="save()">Сохранить изменения</button>
-  </div>
 
-  <div *ngIf="creatingNew">
-    <button (click)="create()">Создать</button>
-  </div>
-
+  <button (click)="save()">Сохранить изменения</button>
+  <button (click)="delete()">Удалить</button>
   <button (click)="cancel()">Отмена</button>
 
 </div>
