@@ -20,22 +20,10 @@ export class CourseService{
     return this.http.get<Course>(courseAddress, {headers: this.userService.getAuthHeaders()});
   }
 
-  getAllCoursesFromProgram(programId: number): Observable<Course[]>{
-    let allCoursesAddress = this.serverAddress + 'program/' + programId + "/allCourses";
-
-    return this.http.get<Course[]>(allCoursesAddress, {headers: this.userService.getAuthHeaders()});
-  }
-
   saveCourse(course: Course): Observable<Course>{
     let courseAddress = this.serverAddress + 'course/' + course.id;
 
     return this.http.post<Course>(courseAddress, course,{headers: this.userService.getAuthHeaders()});
-  }
-
-  addCourse(programId: number): Observable<Course>{
-    let courseAddress = this.serverAddress + 'program/' + programId + "/addCourse";
-
-    return this.http.get<Course>(courseAddress, {headers: this.userService.getAuthHeaders()})
   }
 
   deleteCourse(courseId: number): Observable<Message>{

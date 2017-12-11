@@ -4,6 +4,8 @@ import {UserService} from '../../service/user.service';
 import {Location} from '@angular/common';
 import {CourseService} from '../../service/course.service';
 import {Course} from '../../entity/course';
+import {Program} from '../../entity/program';
+import {ProgramService} from '../../service/program.service';
 
 @Component({
   selector: 'app-test',
@@ -11,33 +13,55 @@ import {Course} from '../../entity/course';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
-  courses: Course[];
-  programId: number = 0;
+  courses: Map<Program, Course[]> = new Map();
+  programs: Program[];
 
   constructor(private userService: UserService,
               private router: Router,
               private location: Location,
               private route: ActivatedRoute,
-              private courseService: CourseService) {
+              private courseService: CourseService,
+              private programService: ProgramService) {
   }
 
   ngOnInit() {
-    this.updateCourseList();
+    this.updateProgramList();
   }
 
-  updateCourseList() {
-    this.courseService.getAllCoursesFromProgram(this.programId).subscribe(courses => {
-      this.courses = courses;
+  updateProgramList(){
+    this.programService.getAllPrograms().subscribe(programs => {
+      this.programs = programs;
+      for(let program of programs){
+        this.updateCourseList(program);
+      }
     });
   }
 
-  create() {
-    this.courseService.addCourse(this.programId).subscribe(course => {
-      this.updateCourseList();
+  updateCourseList(program: Program) {
+    this.programService.getAllCoursesFromProgram(program.id).subscribe(courses => {
+      this.courses.set(program, courses);
+    });
+  }
+
+  deleteProgram(program: Program) {
+    this.programService.deleteProgram(program.id).subscribe(message => {
+      this.updateProgramList();
+    });
+  }
+
+  createCourse(program: Program) {
+    this.programService.addCourseToProgram(program.id).subscribe(course => {
+      this.updateCourseList(program);
+    });
+  }
+
+  createProgram() {
+    this.programService.addProgram().subscribe(program => {
+      this.updateProgramList();
     });
   }
 
   courseClicked(course: Course) {
-    this.router.navigate(['/program', this.programId, 'course', course.id]);
+    this.router.navigate(['/course', course.id]);
   }
 }
