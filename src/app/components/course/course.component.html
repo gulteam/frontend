@@ -1,0 +1,28 @@
+<body>
+<div *ngIf="course">
+
+  Курс {{course.id}}
+
+  Название:
+  <input type="text" [(ngModel)]="course.name">
+
+  Количество часов:
+  <input type="number" step="1" [(ngModel)]="course.amount">
+
+  Семестр:
+  <input type="number" step="1" [(ngModel)]="course.semester">
+
+  <div *ngIf="attestationForms">
+    Форма аттестации:
+    <select [(ngModel)]="course.attestationForm">
+      <option *ngFor="let form of attestationForms" [ngValue]="form">{{form}}</option>
+    </select>
+  </div>
+
+
+  <button (click)="save()">Сохранить изменения</button>
+  <button (click)="delete()">Удалить</button>
+  <button (click)="cancel()">Отмена</button>
+
+</div>
+</body>
