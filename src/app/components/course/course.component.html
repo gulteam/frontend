@@ -51,6 +51,27 @@
   </div>
 
   <p>
+  <div *ngIf="allCourses">
+    Курсы, которые необходимо освоить до данного:
+    <div *ngFor="let course of getPreviousCources()">
+      №{{course.id}} {{course.name}} <button (click)="removeCourse(course)">Удалить</button>
+    </div>
+
+    <select [(ngModel)]="selectedCourse">
+      <option *ngFor="let course of getPossibleCources()" [ngValue]="course">{{course.name}}</option>
+    </select>
+    <button (click)="addCourse()" [disabled]="!selectedCourse">Добавить</button>
+  </div>
+
+  <p>
+  <div *ngIf="allCourses">
+    Курсы, для освоения которых необходим данный:
+    <div *ngFor="let course of getNextCources()">
+      №{{course.id}} {{course.name}}
+    </div>
+  </div>
+
+  <p>
   <button (click)="save()">Сохранить изменения</button>
   <button (click)="delete()">Удалить</button>
   <button (click)="cancel()">Отмена</button>

@@ -6,6 +6,7 @@ import {Location} from '@angular/common';
 import {CourseService} from '../../service/course.service';
 import {SkillsService} from '../../service/skills.service';
 import {KnowledgeService} from '../../service/knowledge.service';
+import {ProgramService} from '../../service/program.service';
 
 @Component({
   selector: 'app-course',
@@ -18,9 +19,11 @@ export class CourseComponent implements OnInit {
 
   allSkills: Skills[];
   allKnowledge: Knowledge[];
+  allCourses: Course[];
 
   selectedSkill: Skills;
   selectedKnowledge: Knowledge;
+  selectedCourse: Course;
 
   constructor(private userService: UserService,
               private router: Router,
@@ -28,7 +31,8 @@ export class CourseComponent implements OnInit {
               private route: ActivatedRoute,
               private courseService: CourseService,
               private skillsService: SkillsService,
-              private knowledgeService: KnowledgeService) {
+              private knowledgeService: KnowledgeService,
+              private programService: ProgramService) {
   }
 
   ngOnInit() {
@@ -37,13 +41,11 @@ export class CourseComponent implements OnInit {
     this.courseService.getCourse(id).subscribe(course=>{
       this.course = course;
 
-      if(!this.course.developSkills){
-        this.course.developSkills = [];
-      }
+      console.log(course);
 
-      if(!this.course.developKnowledge){
-        this.course.developKnowledge = [];
-      }
+      this.programService.getAllCoursesFromProgram(this.course.programId).subscribe(courses => {
+        this.allCourses = courses
+      });
     });
 
     this.skillsService.getAllSkills().subscribe(skills=>{
@@ -52,12 +54,13 @@ export class CourseComponent implements OnInit {
 
     this.knowledgeService.getAllKnowledge().subscribe(knowledge=>{
       this.allKnowledge = knowledge;
-    })
+    });
   }
 
   save(){
     this.courseService.saveCourse(this.course).subscribe(message=>{
       console.log('Course saved');
+      console.log(message);
       this.location.back();
     });
   }
@@ -65,6 +68,7 @@ export class CourseComponent implements OnInit {
   delete(){
     this.courseService.deleteCourse(this.course.id).subscribe(message=>{
       console.log('Course deleted');
+      console.log(message);
       this.location.back();
     });
   }
@@ -113,5 +117,33 @@ export class CourseComponent implements OnInit {
   addKnowledge() {
     this.course.developKnowledge.push(this.selectedKnowledge.id);
     this.selectedKnowledge = null;
+  }
+
+  getPreviousCources(): Course[] {
+    return this.allCourses.filter(course =>
+      this.course.previousCourses.includes(course.id)
+    );
+  }
+
+
+  removeCourse(courseToRemove: Course) {
+    this.course.previousCourses = this.course.previousCourses.filter(course => course != courseToRemove.id);
+  }
+
+  getNextCources(): Course[] {
+    return this.allCourses.filter(course =>
+      this.course.nextCourses.includes(course.id)
+    );
+  }
+
+  getPossibleCources(): Course[] {
+    return this.allCourses.filter(course =>
+      !this.course.previousCourses.includes(course.id) && this.course.id != course.id
+    );
+  }
+
+  addCourse() {
+    this.course.previousCourses.push(this.selectedCourse.id);
+    this.selectedCourse = null;
   }
 }
