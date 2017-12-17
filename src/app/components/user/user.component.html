@@ -1,0 +1,50 @@
+<body>
+<div *ngIf="user">
+
+  Пользователь №{{user.id}} {{user.login}}
+
+  <div>
+    Имя:
+    <input type="text" [(ngModel)]="user.firstName">
+  </div>
+
+  <div>
+    Фамилия:
+    <input type="text" [(ngModel)]="user.secondName">
+  </div>
+
+  <div *ngIf="roles">
+    Роль:
+    <select [(ngModel)]="user.role">
+      <option *ngFor="let role of roles" [ngValue]="role">{{role.name}}</option>
+    </select>
+  </div>
+
+  <div *ngIf="faculties">
+    Факультет:
+    <select [(ngModel)]="user.faculty" (change)="onFacultyChanged()" [disabled]="noFaculty">
+      <option *ngFor="let faculty of faculties" [ngValue]="faculty">{{faculty.name}}</option>
+    </select>
+
+    <input type="checkbox" [checked]="!user.faculty" (change)="facultyStateChanged()" [(ngModel)]="noFaculty">
+    Не привязан к факультету
+  </div>
+
+  <div *ngIf="user.faculty && departments">
+    Кафедра:
+    <select [(ngModel)]="user.department" [disabled]="noDepartment">
+      <option *ngFor="let department of departments" [ngValue]="department">{{department.name}}</option>
+    </select>
+
+    <input type="checkbox" [checked]="!user.department" (change)="departmentStateChanged()" [(ngModel)]="noDepartment">
+    Не привязан к кафедре
+  </div>
+
+  <div>
+    <button (click)="save()">Сохранить изменения</button>
+    <button (click)="delete()">Удалить</button>
+    <button (click)="cancel()">Отмена</button>
+  </div>
+
+</div>
+</body>

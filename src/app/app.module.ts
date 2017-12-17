@@ -9,7 +9,7 @@ import {UserService} from "./service/user.service";
 import {AuthComponent} from "./components/auth/auth.component";
 import {AppRoutingModule} from "./module/app-routing.module";
 import {CourseComponent} from "./components/course/course.component";
-import {TestComponent} from "./components/test/test.component";
+import {ProgramComponent} from './components/program/program.component';
 import {CourseService} from './service/course.service';
 import {ProgramService} from './service/program.service';
 import {SearchLineComponent} from './components/search-line/search-line.component';
@@ -17,16 +17,24 @@ import {SearchService} from './service/search.service';
 import {SearchComponent} from './components/search/search.component';
 import {ProfessionalStandardService} from './service/professional-standard.service';
 import {GraphViewComponent} from './components/graph-view/graph-view.component';
+import {UserListComponent} from './components/users-list/user-list.component';
+import {UserComponent} from './components/user/user.component';
+import {NavigationPanelComponent} from './components/navigation-panel/navigation-panel.component';
+import {RolesService} from './service/roles.service';
+import {FacultyService} from './service/faculty.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     CourseComponent,
-    TestComponent,
+    ProgramComponent,
     SearchLineComponent,
     SearchComponent,
-    GraphViewComponent
+    GraphViewComponent,
+    UserListComponent,
+    UserComponent,
+    NavigationPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +42,16 @@ import {GraphViewComponent} from './components/graph-view/graph-view.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [ConnectionService, UserService, CourseService, ProgramService, SearchService, ProfessionalStandardService],
+  providers: [
+    ConnectionService,
+    UserService,
+    CourseService,
+    ProgramService,
+    SearchService,
+    ProfessionalStandardService,
+    RolesService,
+    FacultyService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
