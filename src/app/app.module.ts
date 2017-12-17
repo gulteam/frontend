@@ -18,6 +18,10 @@ import {SearchComponent} from './components/search/search.component';
 import {ProfessionalStandardService} from './service/professional-standard.service';
 import {GraphViewComponent} from './components/graph-view/graph-view.component';
 import {UserListComponent} from './components/users-list/user-list.component';
+import {UserComponent} from './components/user/user.component';
+import {NavigationPanelComponent} from './components/navigation-panel/navigation-panel.component';
+import {RolesService} from './service/roles.service';
+import {FacultyService} from './service/faculty.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,9 @@ import {UserListComponent} from './components/users-list/user-list.component';
     SearchLineComponent,
     SearchComponent,
     GraphViewComponent,
-    UserListComponent
+    UserListComponent,
+    UserComponent,
+    NavigationPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +42,16 @@ import {UserListComponent} from './components/users-list/user-list.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [ConnectionService, UserService, CourseService, ProgramService, SearchService, ProfessionalStandardService],
+  providers: [
+    ConnectionService,
+    UserService,
+    CourseService,
+    ProgramService,
+    SearchService,
+    ProfessionalStandardService,
+    RolesService,
+    FacultyService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

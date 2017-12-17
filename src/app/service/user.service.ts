@@ -113,8 +113,19 @@ export class UserService extends Subject<User> {
     return this.http.get<User[]>(allUsersAddress, {headers: this.getAuthHeaders()});
   }
 
-  deleteUser(id: number) {
+  deleteUser(id: number): Observable<Message> {
     let userAddress = this.serverAddress + 'user/' + id;
-    return this.http.delete<User>(userAddress, {headers: this.getAuthHeaders()});
+    return this.http.delete<Message>(userAddress, {headers: this.getAuthHeaders()});
+  }
+
+  getUser(id: number): Observable<User> {
+    let userAddress = this.serverAddress + 'user/' + id;
+    return this.http.get<User>(userAddress, {headers: this.getAuthHeaders()});
+  }
+
+  saveUser(user: User):Observable<User> {
+    let userAddress = this.serverAddress + 'user/' + user.id;
+
+    return this.http.post<User>(userAddress, user,{headers: this.getAuthHeaders()});
   }
 }

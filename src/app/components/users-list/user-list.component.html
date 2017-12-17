@@ -1,5 +1,5 @@
 <div *ngIf="users">
-  <div *ngFor="let user of users">
+  <div *ngFor="let user of users" (click)="selectUser(user)">
     Пользователь №{{user.id}} :: {{user.login}} :: {{user.firstName}} {{user.secondName}}
   </div>
 </div>
