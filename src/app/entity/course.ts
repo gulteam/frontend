@@ -8,8 +8,8 @@ export class Course{
   previousCourses: number[];
   nextCourses: number[];
 
-  // If course based on some template field "isImplements" will contain "true" and filed "templateCourse" contains id of template.
-  isImplements: boolean;
+  // If course based on some template field "implementsTemplate" will contain "true" and filed "templateCourse" contains id of template.
+  implementsTemplate: boolean;
   templateCourse: number;
 
   developCompetence: number[];
