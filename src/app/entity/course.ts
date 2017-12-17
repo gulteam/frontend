@@ -15,4 +15,6 @@ export class Course{
   developCompetence: number[];
   developSkills: number[];
   developKnowledge: number[];
+
+  programId: number;
 }

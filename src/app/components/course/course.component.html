@@ -1,16 +1,21 @@
 <body>
 <div *ngIf="course">
 
+  <div>
   Курс {{course.id}}
-
+  </div>
+  <div>
   Название:
   <input type="text" [(ngModel)]="course.name">
-
+  </div>
+  <div>
   Количество часов:
   <input type="number" step="1" [(ngModel)]="course.amount">
-
+  </div>
+  <div>
   Семестр:
   <input type="number" step="1" [(ngModel)]="course.semester">
+  </div>
 
   <div *ngIf="attestationForms">
     Форма аттестации:
@@ -19,7 +24,54 @@
     </select>
   </div>
 
+  <p>
+  <div *ngIf="allSkills">
+    Развиваемые умения:
+    <div *ngFor="let skill of getDevelopsSkills()">
+      №{{skill.id}} {{skill.description}} <button (click)="removeSkill(skill)">Удалить</button>
+    </div>
 
+    <select [(ngModel)]="selectedSkill">
+      <option *ngFor="let skills of getPossibleSkills()" [ngValue]="skills">{{skills.description}}</option>
+    </select>
+    <button (click)="addSkill()" [disabled]="!selectedSkill">Добавить</button>
+  </div>
+
+  <p>
+  <div *ngIf="allKnowledge">
+    Развиваемые знания:
+    <div *ngFor="let knowledge of getDevelopsKnowledge()">
+      №{{knowledge.id}} {{knowledge.description}} <button (click)="removeKnowledge(knowledge)">Удалить</button>
+    </div>
+
+    <select [(ngModel)]="selectedKnowledge">
+      <option *ngFor="let knowledge of getPossibleKnowledge()" [ngValue]="knowledge">{{knowledge.description}}</option>
+    </select>
+    <button (click)="addKnowledge()" [disabled]="!selectedKnowledge">Добавить</button>
+  </div>
+
+  <p>
+  <div *ngIf="allCourses">
+    Курсы, которые необходимо освоить до данного:
+    <div *ngFor="let course of getPreviousCources()">
+      №{{course.id}} {{course.name}} <button (click)="removeCourse(course)">Удалить</button>
+    </div>
+
+    <select [(ngModel)]="selectedCourse">
+      <option *ngFor="let course of getPossibleCources()" [ngValue]="course">{{course.name}}</option>
+    </select>
+    <button (click)="addCourse()" [disabled]="!selectedCourse">Добавить</button>
+  </div>
+
+  <p>
+  <div *ngIf="allCourses">
+    Курсы, для освоения которых необходим данный:
+    <div *ngFor="let course of getNextCources()">
+      №{{course.id}} {{course.name}}
+    </div>
+  </div>
+
+  <p>
   <button (click)="save()">Сохранить изменения</button>
   <button (click)="delete()">Удалить</button>
   <button (click)="cancel()">Отмена</button>
