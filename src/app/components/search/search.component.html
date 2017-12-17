@@ -1,0 +1,17 @@
+<app-search-line></app-search-line>
+<p></p>
+<p></p>
+
+  <span *ngIf="getTrajectories()">
+    <div *ngFor="let trajectory of getTrajectories()" (click)="trajectoryClicked(trajectory)">
+      Траектория:
+      <span *ngFor="let course of trajectory.courses" (click)="courseClicked(course)">
+        {{course.name}} |
+      </span>
+    </div>
+  </span>
+
+<div class="graphContainer">
+  <app-graph-view #graphView></app-graph-view>
+</div>
+

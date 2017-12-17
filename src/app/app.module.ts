@@ -12,13 +12,21 @@ import {CourseComponent} from "./components/course/course.component";
 import {TestComponent} from "./components/test/test.component";
 import {CourseService} from './service/course.service';
 import {ProgramService} from './service/program.service';
+import {SearchLineComponent} from './components/search-line/search-line.component';
+import {SearchService} from './service/search.service';
+import {SearchComponent} from './components/search/search.component';
+import {ProfessionalStandardService} from './service/professional-standard.service';
+import {GraphViewComponent} from './components/graph-view/graph-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     CourseComponent,
-    TestComponent
+    TestComponent,
+    SearchLineComponent,
+    SearchComponent,
+    GraphViewComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +34,7 @@ import {ProgramService} from './service/program.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [ConnectionService, UserService, CourseService, ProgramService],
+  providers: [ConnectionService, UserService, CourseService, ProgramService, SearchService, ProfessionalStandardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

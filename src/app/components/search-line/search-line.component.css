@@ -1,0 +1,46 @@
+.searchPanel{
+  box-shadow: 1pt 1pt #333333;
+  width: 60%;
+  margin-left: 20%;
+  background-color: #888888;
+  display: block;
+  position: relative;
+  padding-right: 3pt;
+}
+
+.inputField{
+  width: 100%;
+}
+
+.variants{
+  position: absolute;
+  width: 100%;
+}
+
+.variant{
+  background-color: #EEEEEE;
+  padding: 1pt;
+}
+
+.value{
+  width: calc(100% - 50pt);
+  text-align: left;
+  padding-left: 4pt;
+}
+
+.option{
+  width: 20pt;
+}
+
+.selected{
+  padding: 2pt;
+}
+
+button{
+  border: 1px outset #555555;
+}
+
+.negativeSelected{
+  background-color: #bb6363;
+  border: 1px solid #582121;
+}

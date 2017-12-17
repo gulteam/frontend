@@ -64,4 +64,8 @@ export class TestComponent implements OnInit {
   courseClicked(course: Course) {
     this.router.navigate(['/course', course.id]);
   }
+
+  gotoSearch(program: Program) {
+    this.router.navigate(['/search', program.id]);
+  }
 }
