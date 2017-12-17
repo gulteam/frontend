@@ -22,6 +22,8 @@ import {UserComponent} from './components/user/user.component';
 import {NavigationPanelComponent} from './components/navigation-panel/navigation-panel.component';
 import {RolesService} from './service/roles.service';
 import {FacultyService} from './service/faculty.service';
+import {SkillsService} from './service/skills.service';
+import {KnowledgeService} from './service/knowledge.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import {FacultyService} from './service/faculty.service';
     SearchService,
     ProfessionalStandardService,
     RolesService,
-    FacultyService
+    FacultyService,
+    SkillsService,
+    KnowledgeService
   ],
   bootstrap: [AppComponent]
 })
