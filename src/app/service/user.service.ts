@@ -107,4 +107,14 @@ export class UserService extends Subject<User> {
   onUserStateChanged() {
     this.next(this.savedUser);
   }
+
+  getAllUsers() : Observable<User[]> {
+    let allUsersAddress = this.serverAddress + 'allUsers';
+    return this.http.get<User[]>(allUsersAddress, {headers: this.getAuthHeaders()});
+  }
+
+  deleteUser(id: number) {
+    let userAddress = this.serverAddress + 'user/' + id;
+    return this.http.delete<User>(userAddress, {headers: this.getAuthHeaders()});
+  }
 }

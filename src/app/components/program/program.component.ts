@@ -9,10 +9,10 @@ import {ProgramService} from '../../service/program.service';
 
 @Component({
   selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  templateUrl: './program.component.html',
+  styleUrls: ['./program.component.css']
 })
-export class TestComponent implements OnInit {
+export class ProgramComponent implements OnInit {
   courses: Map<Program, Course[]> = new Map();
   programs: Program[];
 
