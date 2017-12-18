@@ -6,6 +6,7 @@
     <button (click)="createCourse(program)">Добавить курс</button>
     <button (click)="deleteProgram(program)">Удалить программу</button>
     <button (click)="gotoSearch(program)">Поиск по траекториям</button>
+    <button (click)="analyze(program)">Анализ корректности</button>
 
     <div *ngIf="courses.get(program)">
       <li *ngFor="let course of courses.get(program)">

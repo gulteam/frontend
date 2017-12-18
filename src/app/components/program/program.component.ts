@@ -68,4 +68,8 @@ export class ProgramComponent implements OnInit {
   gotoSearch(program: Program) {
     this.router.navigate(['/search', program.id]);
   }
+
+  analyze(program: Program) {
+    this.router.navigate(['/analyze', program.id]);
+  }
 }

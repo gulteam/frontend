@@ -24,6 +24,7 @@ import {RolesService} from './service/roles.service';
 import {FacultyService} from './service/faculty.service';
 import {SkillsService} from './service/skills.service';
 import {KnowledgeService} from './service/knowledge.service';
+import {AnalyzeComponent} from './components/analyze/analyze.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {KnowledgeService} from './service/knowledge.service';
     GraphViewComponent,
     UserListComponent,
     UserComponent,
-    NavigationPanelComponent
+    NavigationPanelComponent,
+    AnalyzeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,22 @@
+<body>
+<div *ngIf="program">
+  <span>Образовательная программа №{{program.id}}</span> {{program.name}}
+</div>
+
+<div *ngIf="analyzeResult">
+  <div *ngIf="analyzeResult.errorMessages.length == 0">
+    Ошибок не обнаружено
+  </div>
+
+  <div *ngIf="analyzeResult.errorMessages.length > 0">
+    Обнаруженные ошибки:
+
+    <ul *ngFor="let errorMessage of analyzeResult.errorMessages">
+      <li>{{errorMessage}}</li>
+    </ul>
+  </div>
+
+</div>
+
+<button (click)="goBack()">Назад</button>
+</body>
