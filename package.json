@@ -29,6 +29,7 @@
     "angular-in-memory-web-api": "~0.5.0",
     "connection-line": "^1.1.6",
     "core-js": "^2.4.1",
+    "ng2-cookies": "^1.0.12",
     "rxjs": "^5.5.0",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.4"

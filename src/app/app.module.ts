@@ -20,10 +20,15 @@ import {GraphViewComponent} from './components/graph-view/graph-view.component';
 import {UserListComponent} from './components/users-list/user-list.component';
 import {UserComponent} from './components/user/user.component';
 import {NavigationPanelComponent} from './components/navigation-panel/navigation-panel.component';
+import {AllProfessionalStandardComponent} from './components/all_professional_standart/all_professional_standart.component';
 import {RolesService} from './service/roles.service';
 import {FacultyService} from './service/faculty.service';
 import {SkillsService} from './service/skills.service';
 import {KnowledgeService} from './service/knowledge.service';
+import {ProffesionalStandartComponent} from "./components/standart/standart.component";
+import {ProfSearchComponent} from "./components/profSearch/prof_search.component";
+import {ProfSearchService} from "./service/prof-search.service";
+import {ProfSearchLineComponent} from "./components/prof-search-line/prof-search-line.component";
 
 @NgModule({
   declarations: [
@@ -36,7 +41,11 @@ import {KnowledgeService} from './service/knowledge.service';
     GraphViewComponent,
     UserListComponent,
     UserComponent,
-    NavigationPanelComponent
+    NavigationPanelComponent,
+    AllProfessionalStandardComponent,
+    ProffesionalStandartComponent,
+    ProfSearchComponent,
+    ProfSearchLineComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +63,8 @@ import {KnowledgeService} from './service/knowledge.service';
     RolesService,
     FacultyService,
     SkillsService,
-    KnowledgeService
+    KnowledgeService,
+    ProfSearchService,
   ],
   bootstrap: [AppComponent]
 })

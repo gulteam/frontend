@@ -30,4 +30,21 @@ export class ProfessionalStandardService extends Subject<User> {
     let allProfessionalStandardsAddress = this.serverAddress + 'professionalStandard/allStandards';
     return this.http.get<ProfessionalStandard[]>(allProfessionalStandardsAddress, {headers: this.userService.getAuthHeaders()});
   }
+
+  getProfessionalStandart(professionalStandartId: number): Observable<ProfessionalStandard> {
+    let allProfessionalStandardsAddress = this.serverAddress + 'professionalStandard/' + professionalStandartId;
+    return this.http.get<ProfessionalStandard>(allProfessionalStandardsAddress, {headers: this.userService.getAuthHeaders()});
+  }
+
+  getSkillsBypPofessionalStandartId(professionalStandartId: number): Observable<Skills[]> {
+    let allSkillsAddress = this.serverAddress + 'professionalStandard/' + professionalStandartId + '/allSkills';
+
+    return this.http.get<Skills[]>(allSkillsAddress, {headers: this.userService.getAuthHeaders()});
+  }
+
+  getKnowledgesBypPofessionalStandartId(professionalStandartId: number): Observable<Knowledge[]> {
+    let allSkillsAddress = this.serverAddress + 'professionalStandard/' + professionalStandartId + '/allKnowledges';
+
+    return this.http.get<Knowledge[]>(allSkillsAddress, {headers: this.userService.getAuthHeaders()});
+  }
 }

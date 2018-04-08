@@ -1,0 +1,8 @@
+<div *ngIf="professionalStandards">
+  <button (click)="gotoProfSearch()">Поиск по проф. стандартов</button>
+  <br>
+  <span *ngFor="let professionalStandard of professionalStandards">
+    <span (click)="professionalStandartClicked(professionalStandard)">Профессиональный стандарт №{{professionalStandard.id}}</span> {{professionalStandard.name}}
+    <br>
+  </span>
+</div>

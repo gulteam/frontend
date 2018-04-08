@@ -1,0 +1,10 @@
+<app-prof-search-line></app-prof-search-line>
+<p></p>
+<p></p>
+
+  <span *ngIf="getProfessionalStandarts()">
+    <div *ngFor="let professionalStandard of getProfessionalStandarts()" (click)="professionalStandartClicked(professionalStandard)">
+      {{professionalStandard.id}} {{professionalStandard.name}}
+    </div>
+  </span>
+

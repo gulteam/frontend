@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {SearchService} from '../../service/search.service';
-import {Trajectory} from '../../entity/Trajectory';
+import {Trajectory} from '../../entity/trajectory';
 import {Course} from '../../entity/course';
 import {Router} from '@angular/router';
 import {GraphViewComponent} from '../graph-view/graph-view.component';

@@ -1,0 +1,22 @@
+<div class="searchPanel">
+
+  <div class="selected">
+  <span *ngIf="getPositiveVariants().length > 0">
+    <span *ngFor="let variant of getPositiveVariants()">
+      <button class="positiveSelected" (click)="removePositive(variant)">{{variant.text}}</button>
+    </span>
+  </span>
+  </div>
+
+  <input class="inputField" [(ngModel)]="request" placeholder="Введите название знания или умения"
+         (input)="onSearchChange($event.target.value)">
+
+  <div class="variants">
+    <div *ngIf="getVariants()">
+      <div *ngFor="let variant of getVariants()" class="variant">
+        <button class="value" (click)="showInfo(variant)">{{variant.text}}</button>
+        <button class="option" (click)="addPositive(variant)">+</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<body>
+<div *ngIf="professionalStandard">
+
+  <div>
+  Профессиональный стандарт {{professionalStandard.id}}
+  </div>
+  <div>
+  Название:
+  {{professionalStandard.name}}
+  </div>
+
+  <p>
+  <div *ngIf="allSkills">
+    Требуемые умения:
+    <div *ngFor="let skill of allSkills">
+      №{{skill.id}} {{skill.description}}
+    </div>
+  </div>
+
+  <p>
+  <div *ngIf="allKnowledge">
+    Требуемые знания:
+    <div *ngFor="let knowledge of allKnowledge">
+      №{{knowledge.id}} {{knowledge.description}}
+    </div>
+  </div>
+
+</div>
+</body>
