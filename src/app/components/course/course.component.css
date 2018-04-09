@@ -1,0 +1,34 @@
+.infoGroup{
+  margin-top: 10pt;
+  margin-bottom: 10pt;
+}
+
+.header{
+  font-size: 110%;
+  font-weight: 200;
+  margin-bottom: 10pt;
+}
+
+.option{
+  width: 90%;
+  margin-top: 8pt;
+  margin-bottom: 8pt;
+}
+
+.fill{
+  width: 100%;
+}
+
+.grid-arguments {
+  display: grid;
+  grid-template-columns: 150px auto;
+}
+
+.grid-options {
+  display: grid;
+  grid-template-columns: auto 90px;
+}
+
+.grid-item {
+  padding: .2em;
+}
