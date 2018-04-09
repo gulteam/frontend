@@ -1,3 +1,5 @@
+import {User} from './user';
+
 export class Course{
   id: number;
   amount: number;
@@ -17,4 +19,6 @@ export class Course{
   developKnowledge: number[];
 
   programId: number;
+
+  createdBy: User;
 }

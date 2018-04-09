@@ -166,7 +166,8 @@ export class CourseComponent implements OnInit {
     );
   }
 
-  addCourse(course: Course) {
+  addCourse(c: Course) {
+    this.course.previousCourses.push(c.id);
   }
 
   openModal(id: string) {
