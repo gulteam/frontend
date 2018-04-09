@@ -26,9 +26,10 @@
     "@angular/platform-server": "~5.0.0",
     "@angular/router": "~5.0.0",
     "@angular/upgrade": "~5.0.0",
+    "@angular/cli": "^1.6.0",
     "angular-in-memory-web-api": "~0.5.0",
     "connection-line": "^1.1.6",
-    "core-js": "^2.4.1",
+    "core-js": "^2.5.5",
     "rxjs": "^5.5.0",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.4"
@@ -51,7 +52,8 @@
     "protractor": "~5.1.0",
     "ts-node": "^3.3.0",
     "tslint": "^3.15.1",
-    "typescript": "2.4.2"
+    "typescript": "2.4.2",
+    "ng2-cookies": "^1.0.12"
   },
   "repository": {}
 }
