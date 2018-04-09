@@ -26,7 +26,7 @@
   <div *ngIf="allSkills" class="infoGroup">
     <a class="secondaryText header"> Развиваемые умения: </a>
 
-    <div *ngFor="let skill of getDevelopsSkills()" class="grid-options">
+    <div *ngFor="let skill of getDevelopsSkills()" class="grid-options-with-delete">
       <div class="infoPanel">
         <a class="secondaryText">#{{skill.id}}</a> {{skill.description}}
       </div>
@@ -34,13 +34,13 @@
       <div (click)="removeSkill(skill)" class="deletePanel">Удалить</div>
     </div>
 
-    <div class="infoPanel" (click)="addSkill()">Добавить</div>
+    <div class="infoPanel" (click)="openModal('modal-select-skill')">Добавить</div>
   </div>
 
 
   <div *ngIf="allKnowledge" class="infoGroup">
     <a class="secondaryText header"> Развиваемые знания: </a>
-    <div *ngFor="let knowledge of getDevelopsKnowledge()" class="grid-options">
+    <div *ngFor="let knowledge of getDevelopsKnowledge()" class="grid-options-with-delete">
       <div class="infoPanel">
         <a class="secondaryText"> #{{knowledge.id}} </a> {{knowledge.description}}
       </div>
@@ -48,20 +48,20 @@
       <div (click)="removeKnowledge(knowledge)" class="deletePanel">Удалить</div>
     </div>
 
-    <div class="infoPanel" (click)="addKnowledge()">Добавить</div>
+    <div class="infoPanel" (click)="openModal('modal-select-knowledge')">Добавить</div>
   </div>
 
 
   <div *ngIf="allCourses" class="infoGroup">
     <a class="secondaryText header"> Курсы, которые необходимо освоить до данного: </a>
-    <div *ngFor="let course of getPreviousCources()" class="grid-options">
+    <div *ngFor="let course of getPreviousCources()" class="grid-options-with-delete">
       <div class="infoPanel">
         <a class="secondaryText"> #{{course.id}}</a> {{course.name}}
       </div>
       <div (click)="removeCourse(course)" class="deletePanel">Удалить</div>
     </div>
 
-    <div class="infoPanel" (click)="addCourse()">Добавить</div>
+    <div class="infoPanel" (click)="openModal('modal-select-course')">Добавить</div>
   </div>
 
 
@@ -80,3 +80,64 @@
 
 </div>
 </body>
+
+
+<modal id="modal-select-skill">
+  <div class="modal">
+    <div class="modal-body">
+      <div class="variant-selection">
+        <a class="secondaryText header"> Добавить развиваемые умения: </a>
+
+        <div *ngFor="let skill of getPossibleSkills()" class="grid-options">
+          <div class="infoPanel" (click)="addSkill(skill)">
+            <a class="secondaryText">#{{skill.id}}</a> {{skill.description}}
+          </div>
+        </div>
+
+        <p></p>
+
+        <div class="infoPanel" (click)="closeModal('modal-select-skill');">Закрыть окно</div>
+      </div>
+    </div>
+  </div>
+</modal>
+
+<modal id="modal-select-knowledge">
+  <div class="modal">
+    <div class="modal-body">
+      <div class="variant-selection">
+      <a class="secondaryText header"> Добавить развиваемые навыки: </a>
+
+      <div *ngFor="let knowledge of getPossibleKnowledge()" class="grid-options">
+        <div class="infoPanel" (click)="addKnowledge(knowledge)">
+          <a class="secondaryText">#{{knowledge.id}}</a> {{knowledge.description}}
+        </div>
+      </div>
+
+      <p></p>
+
+      <div class="infoPanel" (click)="closeModal('modal-select-knowledge');">Закрыть окно</div>
+      </div>
+    </div>
+  </div>
+</modal>
+
+<modal id="modal-select-course">
+  <div class="modal">
+    <div class="modal-body">
+      <div class="variant-selection">
+        <a class="secondaryText header"> Добавить курс, который необходимо освоить до данного: </a>
+
+        <div *ngFor="let course of getPossibleCources()" class="grid-options">
+          <div class="infoPanel" (click)="addCourse(course)">
+            <a class="secondaryText">#{{course.id}}</a> {{course.name}}
+          </div>
+        </div>
+
+        <p></p>
+
+        <div class="infoPanel" (click)="closeModal('modal-select-course');">Закрыть окно</div>
+      </div>
+    </div>
+  </div>
+</modal>

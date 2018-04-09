@@ -25,6 +25,8 @@ import {FacultyService} from './service/faculty.service';
 import {SkillsService} from './service/skills.service';
 import {KnowledgeService} from './service/knowledge.service';
 import {AnalyzeComponent} from './components/analyze/analyze.component';
+import {ModalComponent} from './components/modal/modal.component';
+import {ModalService} from './service/modal.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import {AnalyzeComponent} from './components/analyze/analyze.component';
     UserListComponent,
     UserComponent,
     NavigationPanelComponent,
-    AnalyzeComponent
+    AnalyzeComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import {AnalyzeComponent} from './components/analyze/analyze.component';
     RolesService,
     FacultyService,
     SkillsService,
-    KnowledgeService
+    KnowledgeService,
+    ModalService
   ],
   bootstrap: [AppComponent]
 })
