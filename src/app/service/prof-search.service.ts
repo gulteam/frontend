@@ -90,7 +90,7 @@ export class ProfSearchService extends Subject<ProfessionalStandard[]> {
   }
 
   private reloadProfStandarts(){
-    let searchProfStandarts = this.serverAddress + 'profSearch';
+    let searchProfStandarts = this.serverAddress + 'professionalStandard/search';
 
     let includeKnowledges = [];
     let includeSkills = [];

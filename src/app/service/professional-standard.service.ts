@@ -27,23 +27,23 @@ export class ProfessionalStandardService extends Subject<User> {
   }
 
   getAll(): Observable<ProfessionalStandard[]> {
-    let allProfessionalStandardsAddress = this.serverAddress + 'professionalStandard/allStandards';
+    const allProfessionalStandardsAddress = this.serverAddress + 'professionalStandard/allStandards';
     return this.http.get<ProfessionalStandard[]>(allProfessionalStandardsAddress, {headers: this.userService.getAuthHeaders()});
   }
 
-  getProfessionalStandart(professionalStandartId: number): Observable<ProfessionalStandard> {
-    let allProfessionalStandardsAddress = this.serverAddress + 'professionalStandard/' + professionalStandartId;
+  getProfessionalStandard(professionalStandardId: number): Observable<ProfessionalStandard> {
+    const allProfessionalStandardsAddress = this.serverAddress + 'professionalStandard/' + professionalStandardId;
     return this.http.get<ProfessionalStandard>(allProfessionalStandardsAddress, {headers: this.userService.getAuthHeaders()});
   }
 
-  getSkillsBypPofessionalStandartId(professionalStandartId: number): Observable<Skills[]> {
-    let allSkillsAddress = this.serverAddress + 'professionalStandard/' + professionalStandartId + '/allSkills';
+  getSkillsByProfessionalStandardId(professionalStandardId: number): Observable<Skills[]> {
+    const allSkillsAddress = this.serverAddress + 'professionalStandard/' + professionalStandardId + '/allSkills';
 
     return this.http.get<Skills[]>(allSkillsAddress, {headers: this.userService.getAuthHeaders()});
   }
 
-  getKnowledgesBypPofessionalStandartId(professionalStandartId: number): Observable<Knowledge[]> {
-    let allSkillsAddress = this.serverAddress + 'professionalStandard/' + professionalStandartId + '/allKnowledges';
+  getKnowledgesByProfessionalStandardId(professionalStandardId: number): Observable<Knowledge[]> {
+    const allSkillsAddress = this.serverAddress + 'professionalStandard/' + professionalStandardId + '/allKnowledges';
 
     return this.http.get<Knowledge[]>(allSkillsAddress, {headers: this.userService.getAuthHeaders()});
   }

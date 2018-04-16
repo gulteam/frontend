@@ -37,16 +37,16 @@ export class ProffesionalStandartComponent implements OnInit {
   ngOnInit() {
     let id = + this.route.snapshot.paramMap.get('id');
 
-    this.professionalStandardService.getProfessionalStandart(id).subscribe(professionalStandard=>{
+    this.professionalStandardService.getProfessionalStandard(id).subscribe(professionalStandard=>{
       this.professionalStandard = professionalStandard;
 
       console.log(professionalStandard);
 
-      this.professionalStandardService.getSkillsBypPofessionalStandartId(this.professionalStandard.id).subscribe(allSkills => {
+      this.professionalStandardService.getSkillsByProfessionalStandardId(this.professionalStandard.id).subscribe(allSkills => {
         this.allSkills = allSkills;
       });
 
-      this.professionalStandardService.getKnowledgesBypPofessionalStandartId(this.professionalStandard.id).subscribe(allKnowledge => {
+      this.professionalStandardService.getKnowledgesByProfessionalStandardId(this.professionalStandard.id).subscribe(allKnowledge => {
         this.allKnowledge = allKnowledge;
       });
     });
