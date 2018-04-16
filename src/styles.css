@@ -1,25 +1,102 @@
 h1 {
-  color: #369;
+  color: darkcyan;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 250%;
 }
 
 .block{
   width: 90%;
-  box-shadow: 2pt 2pt #333333;
-  color: black;
+  box-shadow: 0pt 2pt 5pt 0pt hsla(0, 0%, 0%, 0.2);
   margin-left: 5%;
   margin-top: 10pt;
   padding: 5pt;
   background: white;
+  border-radius: 3px;
 }
 
 .mainBody{
   width: 100%;
   height: 100%;
-  background: #336699;
+  background: whitesmoke;
+}
+
+.secondaryText {
+  color: #CCCCCC;
+}
+
+.infoPanel:hover{
+  background: #008B8B11;
+  box-shadow: 0pt 2pt 5pt 0pt #008B8B44;
+  border-left: 6px solid darkcyan;
+  color: black;
+}
+
+.infoPanel {
+  box-shadow: 0pt 1pt 1pt 0pt hsla(0, 0%, 0%, 0.05);
+  margin-top: 3pt;
+  margin-bottom: 3pt;
+  padding: 3pt;
+  border-left: 6px solid darkgrey;
+  border-radius: 3px;
+  color: #444444;
+}
+
+.deletePanel:hover{
+  background: #ff000044;
+  box-shadow: 0pt 2pt 5pt 0pt #99000044;
+  border-right: 6px solid darkred;
+  color: black;
+}
+
+.deletePanel {
+  box-shadow: 0pt 1pt 1pt 0pt hsla(0, 0%, 0%, 0.05);
+  margin-top: 3pt;
+  margin-bottom: 3pt;
+  padding: 3pt;
+  border-right: 6px solid darkgrey;
+  border-radius: 3px;
+  color: #444444;
+}
+
+.infoGroup {
+  box-shadow: 0pt 2pt 5pt 0pt hsla(0, 0%, 0%, 0.2);
+  margin-top: 6pt;
+  padding: 5pt;
+  border-top: 3px solid darkcyan;
+  border-radius: 3px;
+}
+
+.buttonPanel{
+  margin-top: 6pt;
+  margin-bottom: 6pt;
 }
 
 * {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.modal {
+  background: #00000066;
+  position: absolute;
+  margin: auto;
+
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-body {
+  position: absolute;
+
+  box-shadow: 0pt 3pt 6pt 0pt hsla(0, 0%, 0%, 0.4);
+  padding: 3pt;
+  border-top: 6px solid darkorange;
+  border-radius: 3px;
+  background: white;
+  color: #444444;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

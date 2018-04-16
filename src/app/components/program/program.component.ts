@@ -6,6 +6,7 @@ import {CourseService} from '../../service/course.service';
 import {Course} from '../../entity/course';
 import {Program} from '../../entity/program';
 import {ProgramService} from '../../service/program.service';
+import {ModalService} from '../../service/modal.service';
 
 @Component({
   selector: 'app-test',
@@ -21,7 +22,8 @@ export class ProgramComponent implements OnInit {
               private location: Location,
               private route: ActivatedRoute,
               private courseService: CourseService,
-              private programService: ProgramService) {
+              private programService: ProgramService,
+              private modalService: ModalService) {
   }
 
   ngOnInit() {
@@ -67,5 +69,17 @@ export class ProgramComponent implements OnInit {
 
   gotoSearch(program: Program) {
     this.router.navigate(['/search', program.id]);
+  }
+
+  analyze(program: Program) {
+    this.router.navigate(['/analyze', program.id]);
+  }
+
+  openModal(id: string){
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string){
+    this.modalService.close(id);
   }
 }

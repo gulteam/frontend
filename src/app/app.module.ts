@@ -29,6 +29,9 @@ import {ProffesionalStandartComponent} from "./components/standart/standart.comp
 import {ProfSearchComponent} from "./components/profSearch/prof_search.component";
 import {ProfSearchService} from "./service/prof-search.service";
 import {ProfSearchLineComponent} from "./components/prof-search-line/prof-search-line.component";
+import {AnalyzeComponent} from './components/analyze/analyze.component';
+import {ModalComponent} from './components/modal/modal.component';
+import {ModalService} from './service/modal.service';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import {ProfSearchLineComponent} from "./components/prof-search-line/prof-search
     GraphViewComponent,
     UserListComponent,
     UserComponent,
+    NavigationPanelComponent,
+    AnalyzeComponent,
+    ModalComponent
     NavigationPanelComponent,
     AllProfessionalStandardComponent,
     ProffesionalStandartComponent,
@@ -63,6 +69,8 @@ import {ProfSearchLineComponent} from "./components/prof-search-line/prof-search
     RolesService,
     FacultyService,
     SkillsService,
+    KnowledgeService,
+    ModalService
     KnowledgeService,
     ProfSearchService,
   ],
