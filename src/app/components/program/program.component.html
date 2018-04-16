@@ -7,9 +7,9 @@
 
       <div class="buttonPanel">
         <span (click)="createCourse(program)" class="infoPanel">Добавить курс</span>
-        <span (click)="deleteProgram(program)" class="infoPanel">Удалить программу</span>
         <span (click)="gotoSearch(program)" class="infoPanel">Поиск по траекториям</span>
         <span (click)="analyze(program)" class="infoPanel">Анализ корректности</span>
+        <span (click)="deleteProgram(program)" class="deletePanel">Удалить программу</span>
       </div>
 
       <div *ngIf="courses.get(program)">

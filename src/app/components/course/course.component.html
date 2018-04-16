@@ -65,10 +65,12 @@
   </div>
 
 
-  <div *ngIf="allCourses" class="infoGroup">
+  <div *ngIf="allCourses && getNextCources().length > 0" class="infoGroup">
     <a class="secondaryText header"> Курсы, для освоения которых необходим данный: </a>
-    <div *ngFor="let course of getNextCources()">
-      <a class="secondaryText"> #{{course.id}}</a> {{course.name}}
+    <div *ngFor="let course of getNextCources()" class="grid-options">
+      <div class="infoPanel">
+        <a class="secondaryText"> #{{course.id}}</a> {{course.name}}
+      </div>
     </div>
   </div>
 

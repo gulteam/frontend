@@ -6,6 +6,7 @@ import {SearchComponent} from '../components/search/search.component';
 import {UserComponent} from '../components/user/user.component';
 import {UserListComponent} from '../components/users-list/user-list.component';
 import {AnalyzeComponent} from '../components/analyze/analyze.component';
+import {FacultyComponent} from '../components/faculty/faculty.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'allPrograms', pathMatch: 'full'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'analyze/:id', component: AnalyzeComponent},
   {path: 'allPrograms', component: ProgramComponent},
   {path: 'allUsers', component: UserListComponent},
+  {path: 'allFaculties', component: FacultyComponent},
 ];
 
 @NgModule({

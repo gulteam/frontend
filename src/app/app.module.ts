@@ -27,6 +27,7 @@ import {KnowledgeService} from './service/knowledge.service';
 import {AnalyzeComponent} from './components/analyze/analyze.component';
 import {ModalComponent} from './components/modal/modal.component';
 import {ModalService} from './service/modal.service';
+import {FacultyComponent} from './components/faculty/faculty.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {ModalService} from './service/modal.service';
     UserComponent,
     NavigationPanelComponent,
     AnalyzeComponent,
-    ModalComponent
+    ModalComponent,
+    FacultyComponent
   ],
   imports: [
     BrowserModule,
