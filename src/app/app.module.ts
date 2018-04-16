@@ -28,6 +28,8 @@ import {AnalyzeComponent} from './components/analyze/analyze.component';
 import {ModalComponent} from './components/modal/modal.component';
 import {ModalService} from './service/modal.service';
 import {FacultyComponent} from './components/faculty/faculty.component';
+import {DepartmentComponent} from './components/department/department.component';
+import {DepartmentService} from './service/department.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import {FacultyComponent} from './components/faculty/faculty.component';
     NavigationPanelComponent,
     AnalyzeComponent,
     ModalComponent,
-    FacultyComponent
+    FacultyComponent,
+    DepartmentComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import {FacultyComponent} from './components/faculty/faculty.component';
     FacultyService,
     SkillsService,
     KnowledgeService,
-    ModalService
+    ModalService,
+    DepartmentService
   ],
   bootstrap: [AppComponent]
 })

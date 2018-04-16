@@ -63,11 +63,11 @@ export class FacultyComponent implements OnInit {
     });
   }
 
-  /*courseClicked(course: Course) {
-    this.router.navigate(['/course', course.id]);
+  departmentClicked(department: Department) {
+    this.router.navigate(['/department', department.id]);
   }
 
-  gotoSearch(program: Program) {
+  /*gotoSearch(program: Program) {
     this.router.navigate(['/search', program.id]);
   }
 
