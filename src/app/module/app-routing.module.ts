@@ -6,7 +6,7 @@ import {SearchComponent} from '../components/search/search.component';
 import {UserComponent} from '../components/user/user.component';
 import {UserListComponent} from '../components/users-list/user-list.component';
 import {AnalyzeComponent} from '../components/analyze/analyze.component';
-import {FacultyComponent} from '../components/faculty/faculty.component';
+import {FacultiesComponent} from '../components/faculties/faculties.component';
 import {DepartmentComponent} from '../components/department/department.component';
 
 const routes: Routes = [
@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'department/:id', component: DepartmentComponent},
   {path: 'allPrograms', component: ProgramComponent},
   {path: 'allUsers', component: UserListComponent},
-  {path: 'allFaculties', component: FacultyComponent},
+  {path: 'allFaculties', component: FacultiesComponent},
 ];
 
 @NgModule({

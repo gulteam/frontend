@@ -27,7 +27,7 @@ import {KnowledgeService} from './service/knowledge.service';
 import {AnalyzeComponent} from './components/analyze/analyze.component';
 import {ModalComponent} from './components/modal/modal.component';
 import {ModalService} from './service/modal.service';
-import {FacultyComponent} from './components/faculty/faculty.component';
+import {FacultiesComponent} from './components/faculties/faculties.component';
 import {DepartmentComponent} from './components/department/department.component';
 import {DepartmentService} from './service/department.service';
 
@@ -45,7 +45,7 @@ import {DepartmentService} from './service/department.service';
     NavigationPanelComponent,
     AnalyzeComponent,
     ModalComponent,
-    FacultyComponent,
+    FacultiesComponent,
     DepartmentComponent
   ],
   imports: [

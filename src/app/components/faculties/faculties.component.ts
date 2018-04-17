@@ -2,17 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../service/user.service';
 import {Location} from '@angular/common';
-import {Course} from '../../entity/course';
-import {Program} from '../../entity/program';
 import {FacultyService} from '../../service/faculty.service';
 import {ModalService} from '../../service/modal.service';
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './faculty.component.html',
-  styleUrls: ['./faculty.component.css']
+  selector: 'app-faculties',
+  templateUrl: './faculties.component.html',
+  styleUrls: ['./faculties.component.css']
 })
-export class FacultyComponent implements OnInit {
+export class FacultiesComponent implements OnInit {
   departments: Map<Faculty, Department[]> = new Map();
   faculties: Faculty[];
 
