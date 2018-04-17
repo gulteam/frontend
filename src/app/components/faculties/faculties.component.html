@@ -6,6 +6,7 @@
       <a class="secondaryText">Факультет #{{faculty.id}} </a> {{faculty.name}}
 
       <div class="buttonPanel">
+        <span (click)="editFaculty(faculty)" class="infoPanel">Редактировать факультет</span>
         <span (click)="createDepartment(faculty)" class="infoPanel">Добавить кафедру</span>
         <span (click)="deleteFaculty(faculty)" class="deletePanel">Удалить факультет</span>
       </div>

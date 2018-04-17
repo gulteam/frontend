@@ -37,7 +37,7 @@ export class ProgramService {
   saveProgram(program: Program): Observable<Program> {
     let programAddress = this.serverAddress + 'program/' + program.id;
 
-    return this.http.post<Course>(programAddress, program, {headers: this.userService.getAuthHeaders()});
+    return this.http.post<Program>(programAddress, program, {headers: this.userService.getAuthHeaders()});
   }
 
   getAllPrograms(): Observable<Program[]> {

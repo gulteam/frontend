@@ -4,15 +4,16 @@
   <div class="infoGroup">
     <div class="secondaryText header">
       Курс #{{course.id}}. Создан: {{course.createdBy.firstName}} {{course.createdBy.secondName}}
+      <span *ngIf="course.canEdit==false" class="secondaryText">(Только чтение)</span>
     </div>
 
     <div class="grid-arguments">
       <div class="grid-item"> Название:</div>
-      <div class="grid-item"><input type="text" [(ngModel)]="course.name"></div>
+      <div class="grid-item"><input type="text" [(ngModel)]="course.name" [disabled]="course.canEdit==false"></div>
       <div class="grid-item"> Количество часов:</div>
-      <div class="grid-item"><input type="number" step="1" [(ngModel)]="course.amount"></div>
+      <div class="grid-item"><input type="number" step="1" [(ngModel)]="course.amount" [disabled]="course.canEdit==false"></div>
       <div class="grid-item"> Семестр:</div>
-      <div class="grid-item"><input type="number" step="1" [(ngModel)]="course.semester"></div>
+      <div class="grid-item"><input type="number" step="1" [(ngModel)]="course.semester" [disabled]="course.canEdit==false"></div>
     </div>
 
     <div *ngIf="attestationForms">
@@ -31,10 +32,10 @@
         <a class="secondaryText">#{{skill.id}}</a> {{skill.description}}
       </div>
 
-      <div (click)="removeSkill(skill)" class="deletePanel">Удалить</div>
+      <div (click)="removeSkill(skill)" class="deletePanel" *ngIf="course.canEdit==true">Удалить</div>
     </div>
 
-    <div class="infoPanel" (click)="openModal('modal-select-skill')">Добавить</div>
+    <div class="infoPanel" (click)="openModal('modal-select-skill')" *ngIf="course.canEdit==true">Добавить</div>
   </div>
 
 
@@ -45,23 +46,24 @@
         <a class="secondaryText"> #{{knowledge.id}} </a> {{knowledge.description}}
       </div>
 
-      <div (click)="removeKnowledge(knowledge)" class="deletePanel">Удалить</div>
+      <div (click)="removeKnowledge(knowledge)" class="deletePanel" *ngIf="course.canEdit==true">Удалить</div>
     </div>
 
-    <div class="infoPanel" (click)="openModal('modal-select-knowledge')">Добавить</div>
+    <div class="infoPanel" (click)="openModal('modal-select-knowledge')" *ngIf="course.canEdit==true">Добавить</div>
   </div>
 
 
   <div *ngIf="allCourses" class="infoGroup">
+
     <a class="secondaryText header"> Курсы, которые необходимо освоить до данного: </a>
     <div *ngFor="let course of getPreviousCources()" class="grid-options-with-delete">
       <div class="infoPanel">
         <a class="secondaryText"> #{{course.id}}</a> {{course.name}}
       </div>
-      <div (click)="removeCourse(course)" class="deletePanel">Удалить</div>
+      <div (click)="removeCourse(course)" class="deletePanel" *ngIf="course.canEdit==true">Удалить</div>
     </div>
 
-    <div class="infoPanel" (click)="openModal('modal-select-course')">Добавить</div>
+    <div class="infoPanel" (click)="openModal('modal-select-course')" *ngIf="course.canEdit==true">Добавить</div>
   </div>
 
 
@@ -75,9 +77,9 @@
   </div>
 
   <div class="buttonPanel">
-    <span (click)="save()" class="infoPanel">Сохранить изменения</span>
+    <span (click)="save()" class="infoPanel" *ngIf="course.canEdit==true">Сохранить изменения</span>
     <span (click)="cancel()" class="infoPanel">Отмена</span>
-    <span (click)="delete()" class="deletePanel">Удалить курс</span>
+    <span (click)="delete()" class="deletePanel" *ngIf="course.canEdit==true">Удалить курс</span>
   </div>
 
 </div>

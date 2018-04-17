@@ -100,3 +100,22 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.grid-arguments {
+  display: grid;
+  grid-template-columns: 150px auto;
+}
+
+.grid-options-with-delete {
+  display: grid;
+  grid-template-columns: auto 90px;
+}
+
+.grid-options {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.grid-item {
+  padding: .2em;
+}

@@ -30,6 +30,7 @@ import {ModalService} from './service/modal.service';
 import {FacultiesComponent} from './components/faculties/faculties.component';
 import {DepartmentComponent} from './components/department/department.component';
 import {DepartmentService} from './service/department.service';
+import {FacultyComponent} from './components/faculty/faculty.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {DepartmentService} from './service/department.service';
     AnalyzeComponent,
     ModalComponent,
     FacultiesComponent,
-    DepartmentComponent
+    DepartmentComponent,
+    FacultyComponent
   ],
   imports: [
     BrowserModule,

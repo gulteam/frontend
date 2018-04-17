@@ -1,6 +1,6 @@
 <div *ngIf="users">
-  <div *ngFor="let user of users" (click)="selectUser(user)">
-    Пользователь №{{user.id}} :: {{user.login}} :: {{user.firstName}} {{user.secondName}}
+  <div *ngFor="let user of users" (click)="selectUser(user)" class="infoPanel">
+    <span class ="secondaryText">Пользователь #{{user.id}}</span> {{user.login}} :: {{user.firstName}} {{user.secondName}}
   </div>
 </div>
 

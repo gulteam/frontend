@@ -33,7 +33,9 @@ export class ProgramComponent implements OnInit {
   updateProgramList(){
     this.programService.getAllPrograms().subscribe(programs => {
       this.programs = programs;
+      console.log('all programs: ');
       for(let program of programs){
+        console.log(program);
         this.updateCourseList(program);
       }
     });

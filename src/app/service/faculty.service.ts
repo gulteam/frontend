@@ -44,4 +44,16 @@ export class FacultyService {
 
     return this.http.get<Faculty>(facultyAddress, {headers: this.userService.getAuthHeaders()});
   }
+
+  getFaculty(facultyId: number): Observable<Faculty>{
+    let facultyAddress = this.serverAddress + 'faculty/' + facultyId;
+
+    return this.http.get<Faculty>(facultyAddress, {headers: this.userService.getAuthHeaders()});
+  }
+
+  saveFaculty(faculty: Faculty): Observable<Faculty>{
+    let facultyAddress = this.serverAddress + 'faculty/' + faculty.id;
+
+    return this.http.post<Faculty>(facultyAddress, faculty,{headers: this.userService.getAuthHeaders()});
+  }
 }

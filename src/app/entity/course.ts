@@ -20,5 +20,6 @@ export class Course{
 
   programId: number;
 
+  canEdit: boolean;
   createdBy: User;
 }

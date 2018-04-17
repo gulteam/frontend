@@ -5,7 +5,7 @@
     <h2>Авторизация</h2>
     <input [(ngModel)]="authData.login" placeholder="Логин">
     <input [(ngModel)]="authData.password" type="password" placeholder="Пароль">
-    <button (click)="signIn()">Вход</button>
+    <span (click)="signIn()" class="infoPanel">Вход</span>
   </div>
 
   <div>
@@ -14,13 +14,14 @@
     <input [(ngModel)]="registerData.secondName" placeholder="Фамилия">
     <input [(ngModel)]="registerData.authData.login" placeholder="Логин">
     <input [(ngModel)]="registerData.authData.password" type="password" placeholder="Пароль">
-    <button (click)="signUp()">Регистрация</button>
+    <span (click)="signUp()" class="infoPanel">Регистрация</span>
   </div>
 
 </div>
 
-<div *ngIf="isLogged()">
-  Добро пожаловать, {{user.login}}!
-  <button (click)="signOut()">Выход</button>
+<div *ngIf="user">
+  Добро пожаловать, {{user.secondName}} {{user.firstName}}!
+  <a class="secondaryText">({{user.login}})</a>
+  <span (click)="signOut()" class="deletePanel">Выход</span>
 </div>
 </body>

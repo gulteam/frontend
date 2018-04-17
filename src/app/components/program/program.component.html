@@ -4,12 +4,19 @@
   <span *ngFor="let program of programs">
     <div class="infoGroup">
       <a class="secondaryText">Образовательная программа #{{program.id}} </a> {{program.name}}
+      <span *ngIf="program.canEdit==false" class="secondaryText">(Только чтение)</span>
+      <div class="secondaryText">
+        Факультет: {{program.faculty.name}}
+      </div>
+      <div class="secondaryText">
+        Создан: {{program.createdBy.secondName}} {{program.createdBy.firstName}}
+      </div>
 
       <div class="buttonPanel">
-        <span (click)="createCourse(program)" class="infoPanel">Добавить курс</span>
+        <span (click)="createCourse(program)" class="infoPanel" *ngIf="program.canEdit==true">Добавить курс</span>
         <span (click)="gotoSearch(program)" class="infoPanel">Поиск по траекториям</span>
         <span (click)="analyze(program)" class="infoPanel">Анализ корректности</span>
-        <span (click)="deleteProgram(program)" class="deletePanel">Удалить программу</span>
+        <span (click)="deleteProgram(program)" class="deletePanel" *ngIf="program.canEdit==true">Удалить программу</span>
       </div>
 
       <div *ngIf="courses.get(program)">

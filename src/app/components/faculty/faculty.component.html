@@ -1,0 +1,23 @@
+<body>
+<div *ngIf="faculty">
+
+  <div class="infoGroup">
+    <div class="secondaryText header">
+      Факультет #{{faculty.id}}.
+    </div>
+
+    <div class="grid-arguments">
+      <div class="grid-item"> Название:</div>
+      <div class="grid-item"><input type="text" [(ngModel)]="faculty.name"></div>
+    </div>
+  </div>
+
+  <div class="buttonPanel">
+    <span (click)="save()" class="infoPanel">Сохранить изменения</span>
+    <span (click)="cancel()" class="infoPanel">Отмена</span>
+    <span (click)="delete()" class="deletePanel">Удалить факультет</span>
+  </div>
+
+</div>
+</body>
+

@@ -80,4 +80,8 @@ export class FacultiesComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
   }
+
+  editFaculty(faculty: Faculty) {
+    this.router.navigate(['/faculty', faculty.id]);
+  }
 }
