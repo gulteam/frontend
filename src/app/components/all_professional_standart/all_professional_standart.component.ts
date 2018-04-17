@@ -38,4 +38,8 @@ export class AllProfessionalStandardComponent implements OnInit {
   gotoProfSearch(){
     this.router.navigate(['/profSearch']);
   }
+
+  gotoAllProfessionalStandartStatuses(){
+    this.router.navigate(['/allProfessionalStandartStatuses']);
+  }
 }

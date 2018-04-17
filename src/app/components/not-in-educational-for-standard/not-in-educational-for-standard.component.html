@@ -2,16 +2,16 @@
 <div *ngIf="professionalStandard">
 
   <div  class="infoGroup">
-  Профессиональный стандарт {{professionalStandard.id}}
+    Профессиональный стандарт {{professionalStandard.id}}
   </div>
   <div  class="infoGroup">
-  Название:
-  {{professionalStandard.name}}
+    Название:
+    {{professionalStandard.name}}
   </div>
 
   <p>
   <div *ngIf="allSkills"  class="infoGroup">
-    Требуемые умения:
+    Не хватает умений:
     <div *ngFor="let skill of allSkills" class="infoPanel">
       №{{skill.id}} {{skill.description}}
     </div>
@@ -19,7 +19,7 @@
 
   <p>
   <div *ngIf="allKnowledge"  class="infoGroup">
-    Требуемые знания:
+    Не хватает знаний:
     <div *ngFor="let knowledge of allKnowledge" class="infoPanel">
       №{{knowledge.id}} {{knowledge.description}}
     </div>

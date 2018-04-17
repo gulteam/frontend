@@ -21,6 +21,7 @@ import {UserListComponent} from './components/users-list/user-list.component';
 import {UserComponent} from './components/user/user.component';
 import {NavigationPanelComponent} from './components/navigation-panel/navigation-panel.component';
 import {AllProfessionalStandardComponent} from './components/all_professional_standart/all_professional_standart.component';
+import {AllProfessionalStandardStatusComponent} from './components/all_professional_standart_status/all_professional_standart_status.component';
 import {RolesService} from './service/roles.service';
 import {FacultyService} from './service/faculty.service';
 import {SkillsService} from './service/skills.service';
@@ -31,6 +32,7 @@ import {ProfSearchService} from "./service/prof-search.service";
 import {ProfSearchLineComponent} from "./components/prof-search-line/prof-search-line.component";
 import {AnalyzeComponent} from './components/analyze/analyze.component';
 import {ModalComponent} from './components/modal/modal.component';
+import {StatusComponent} from './components/not-in-educational-for-standard/not-in-educational-for-standard.component';
 import {ModalService} from './service/modal.service';
 
 @NgModule({
@@ -46,12 +48,14 @@ import {ModalService} from './service/modal.service';
     UserComponent,
     NavigationPanelComponent,
     AnalyzeComponent,
-    ModalComponent
+    ModalComponent,
     NavigationPanelComponent,
     AllProfessionalStandardComponent,
     ProffesionalStandartComponent,
     ProfSearchComponent,
-    ProfSearchLineComponent
+    ProfSearchLineComponent,
+    AllProfessionalStandardStatusComponent,
+    StatusComponent
   ],
   imports: [
     BrowserModule,
@@ -70,9 +74,9 @@ import {ModalService} from './service/modal.service';
     FacultyService,
     SkillsService,
     KnowledgeService,
-    ModalService
+    ModalService,
     KnowledgeService,
-    ProfSearchService,
+    ProfSearchService
   ],
   bootstrap: [AppComponent]
 })

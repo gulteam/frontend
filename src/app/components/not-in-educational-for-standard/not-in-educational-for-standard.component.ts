@@ -7,12 +7,11 @@ import {ProfessionalStandardService} from '../../service/professional-standard.s
 
 @Component({
   selector: 'app-course',
-  templateUrl: './standart.component.html',
-  styleUrls: ['./standart.component.css']
+  templateUrl: './not-in-educational-for-standard.component.html',
+  styleUrls: ['./not-in-educational-for-standard.component.css']
 })
-export class ProffesionalStandartComponent implements OnInit {
+export class StatusComponent implements OnInit {
   professionalStandard: ProfessionalStandard;
-
   allSkills: Skills[];
   allKnowledge: Knowledge[];
 
@@ -31,11 +30,11 @@ export class ProffesionalStandartComponent implements OnInit {
 
       console.log(professionalStandard);
 
-      this.professionalStandardService.getSkillsByProfessionalStandardId(this.professionalStandard.id).subscribe(allSkills => {
+      this.professionalStandardService.getSkillsNotInEducationForStandard(this.professionalStandard.id).subscribe(allSkills => {
         this.allSkills = allSkills;
       });
 
-      this.professionalStandardService.getKnowledgesByProfessionalStandardId(this.professionalStandard.id).subscribe(allKnowledge => {
+      this.professionalStandardService.getKnowledgesNotInEducationForStandard(this.professionalStandard.id).subscribe(allKnowledge => {
         this.allKnowledge = allKnowledge;
       });
     });

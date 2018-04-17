@@ -3,8 +3,8 @@
 <p></p>
 
   <span *ngIf="getProfessionalStandarts()">
-    <div *ngFor="let professionalStandard of getProfessionalStandarts()" (click)="professionalStandartClicked(professionalStandard)">
-      {{professionalStandard.id}} {{professionalStandard.name}}
+    <div *ngFor="let professionalStandard of getProfessionalStandarts()" (click)="professionalStandartClicked(professionalStandard)"  class = "infoPanel">
+      Профессиональный стандарт № {{professionalStandard.id}} {{professionalStandard.name}}
     </div>
   </span>
 

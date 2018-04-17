@@ -9,6 +9,8 @@ import {AllProfessionalStandardComponent} from '../components/all_professional_s
 import {ProffesionalStandartComponent} from "../components/standart/standart.component";
 import {ProfSearchComponent} from "../components/profSearch/prof_search.component";
 import {AnalyzeComponent} from '../components/analyze/analyze.component';
+import {AllProfessionalStandardStatusComponent}from '../components/all_professional_standart_status/all_professional_standart_status.component';
+import {StatusComponent} from '../components/not-in-educational-for-standard/not-in-educational-for-standard.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'allPrograms', pathMatch: 'full'},
@@ -17,10 +19,12 @@ const routes: Routes = [
   {path: 'search/:id', component: SearchComponent},
   {path: 'analyze/:id', component: AnalyzeComponent},
   {path: 'standart/:id', component: ProffesionalStandartComponent},
+  {path: 'status/:id', component: StatusComponent},
   {path: 'allPrograms', component: ProgramComponent},
   {path: 'allUsers', component: UserListComponent},
   {path: 'allProfessionalStandarts', component: AllProfessionalStandardComponent},
-  {path: 'profSearch', component: ProfSearchComponent}
+  {path: 'profSearch', component: ProfSearchComponent},
+  {path: 'allProfessionalStandartStatuses', component: AllProfessionalStandardStatusComponent}
 ];
 
 @NgModule({

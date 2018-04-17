@@ -15,6 +15,7 @@ import {RegisterData} from "../entity/register-data";
 import {Message} from "../entity/message";
 import {ProfessionalStandard} from '../entity/professional-standard';
 import {UserService} from './user.service';
+import {ProfessionalStandardStatus} from '../entity/professional-standard-status';
 
 // Notifies subscribers if the status of authorization has been changed
 @Injectable()
@@ -43,8 +44,25 @@ export class ProfessionalStandardService extends Subject<User> {
   }
 
   getKnowledgesByProfessionalStandardId(professionalStandardId: number): Observable<Knowledge[]> {
-    const allSkillsAddress = this.serverAddress + 'professionalStandard/' + professionalStandardId + '/allKnowledges';
+    const allKnowledgesAddress = this.serverAddress + 'professionalStandard/' + professionalStandardId + '/allKnowledges';
 
-    return this.http.get<Knowledge[]>(allSkillsAddress, {headers: this.userService.getAuthHeaders()});
+    return this.http.get<Knowledge[]>(allKnowledgesAddress, {headers: this.userService.getAuthHeaders()});
+  }
+
+  getSkillsNotInEducationForStandard(professionalStandardId: number): Observable<Skills[]> {
+    const skillsNotInEducationForStandardAddress = this.serverAddress + 'professionalStandard/' + professionalStandardId + '/getSkillsNotInEducationForStandard';
+
+    return this.http.get<Skills[]>(skillsNotInEducationForStandardAddress, {headers: this.userService.getAuthHeaders()});
+  }
+
+  getKnowledgesNotInEducationForStandard(professionalStandardId: number): Observable<Knowledge[]> {
+    const knowledgesNotInEducationForStandardAddress = this.serverAddress + 'professionalStandard/' + professionalStandardId + '/getKnowledgesNotInEducationForStandard';
+
+    return this.http.get<Knowledge[]>(knowledgesNotInEducationForStandardAddress, {headers: this.userService.getAuthHeaders()});
+  }
+
+  getAllProfessionalStandardStatus(): Observable<ProfessionalStandardStatus[]> {
+    const allProfessionalStandardsStatusAddress = this.serverAddress + 'professionalStandard/status';
+    return this.http.get<ProfessionalStandardStatus[]>(allProfessionalStandardsStatusAddress, {headers: this.userService.getAuthHeaders()});
   }
 }
