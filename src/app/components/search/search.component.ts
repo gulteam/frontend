@@ -42,4 +42,9 @@ export class SearchComponent implements OnInit {
   trajectoryClicked(trajectory: Trajectory) {
     this.graphViewComponent.setSelectedTrajectory(trajectory);
   }
+
+  onBlockClick() {
+    console.log('!!!');
+    this.searchService.clearRequest();
+  }
 }
