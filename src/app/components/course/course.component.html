@@ -11,9 +11,9 @@
       <div class="grid-item"> Название:</div>
       <div class="grid-item"><input type="text" [(ngModel)]="course.name" [disabled]="course.canEdit==false"></div>
       <div class="grid-item"> Количество часов:</div>
-      <div class="grid-item"><input type="number" step="1" [(ngModel)]="course.amount" [disabled]="course.canEdit==false"></div>
+      <div class="grid-item"><input type="number" step="1" [(ngModel)]="course.amount" [disabled]="course.canEdit==false || course.implementsTemplate == true"></div>
       <div class="grid-item"> Семестр:</div>
-      <div class="grid-item"><input type="number" step="1" [(ngModel)]="course.semester" [disabled]="course.canEdit==false"></div>
+      <div class="grid-item"><input type="number" step="1" [(ngModel)]="course.semester" [disabled]="course.canEdit==false || course.implementsTemplate == true"></div>
     </div>
 
     <div *ngIf="attestationForms">
@@ -25,7 +25,7 @@
   </div>
 
   <div *ngIf="allSkills" class="infoGroup">
-    <a class="secondaryText header"> Развиваемые умения: </a>
+    <a class="secondaryText header"> Формируемые умения: </a>
 
     <div *ngFor="let skill of getDevelopsSkills()" class="grid-options-with-delete">
       <div class="infoPanel">
@@ -40,7 +40,7 @@
 
 
   <div *ngIf="allKnowledge" class="infoGroup">
-    <a class="secondaryText header"> Развиваемые знания: </a>
+    <a class="secondaryText header"> Формируемые знания: </a>
     <div *ngFor="let knowledge of getDevelopsKnowledge()" class="grid-options-with-delete">
       <div class="infoPanel">
         <a class="secondaryText"> #{{knowledge.id}} </a> {{knowledge.description}}
@@ -52,6 +52,18 @@
     <div class="infoPanel" (click)="openModal('modal-select-knowledge')" *ngIf="course.canEdit==true">Добавить</div>
   </div>
 
+  <div *ngIf="allCompetences" class="infoGroup">
+    <a class="secondaryText header"> Формируемые компетенции: </a>
+    <div *ngFor="let competence of getDevelopsCompetence()" class="grid-options-with-delete">
+      <div class="infoPanel">
+        <a class="secondaryText"> #{{competence.id}} </a> {{competence.code}} "{{competence.description}}"
+      </div>
+
+      <div (click)="removeCompetence(competence)" class="deletePanel" *ngIf="course.canEdit==true">Удалить</div>
+    </div>
+
+    <div class="infoPanel" (click)="openModal('modal-select-competence')" *ngIf="course.canEdit==true">Добавить</div>
+  </div>
 
   <div *ngIf="allCourses" class="infoGroup">
 
@@ -76,6 +88,46 @@
     </div>
   </div>
 
+  <div  class="infoGroup">
+    <div *ngIf="course.canEditDevelopersList==false" class="secondaryText">(Только чтение)</div>
+    <a class="secondaryText header">Ответственные за курс: </a>
+
+    <div class="grid-arguments">
+      <div *ngIf="faculties" class="grid-item">Факультет:</div>
+      <div *ngIf="faculties" class="grid-item">
+        <select [(ngModel)]="course.faculty" (change)="onFacultyChanged()" [disabled]="noFaculty || course.canEditDevelopersList == false">
+          <option *ngFor="let faculty of faculties" [ngValue]="faculty">{{faculty.name}}</option>
+        </select>
+
+        <input type="checkbox" [checked]="!course.faculty" (change)="facultyStateChanged()" [(ngModel)]="noFaculty" [disabled]="course.canEditDevelopersList==false">
+        Не привязан к факультету
+      </div>
+
+      <div *ngIf="course.faculty && departments" class="grid-item">Кафедра:</div>
+      <div *ngIf="course.faculty && departments" class="grid-item"><select [(ngModel)]="course.department"
+                                                                         [disabled]="noDepartment || course.canEditDevelopersList == false">
+        <option *ngFor="let department of departments" [ngValue]="department">{{department.name}}</option>
+      </select>
+
+        <input type="checkbox" [checked]="!course.department" (change)="departmentStateChanged()"
+               [(ngModel)]="noDepartment" [disabled]="course.canEditDevelopersList==false">
+        Не привязан к кафедре
+      </div>
+    </div>
+
+    <a class="secondaryText header">Ответственные за формирование рабочей программы курса: </a>
+
+    <div *ngFor="let user of getDevelopsBy()" class="grid-options-with-delete">
+      <div class="infoPanel">
+        <a class="secondaryText">#{{user.id}}</a> {{user.secondName}} {{user.firstName}}
+      </div>
+
+      <div (click)="removeDevelopsBy(user)" class="deletePanel" *ngIf="course.canEditDevelopersList==true">Удалить</div>
+    </div>
+
+    <div class="infoPanel" (click)="openModal('modal-select-developsBy')" *ngIf="course.canEditDevelopersList==true">Добавить</div>
+  </div>
+
   <div class="buttonPanel">
     <span (click)="save()" class="infoPanel" *ngIf="course.canEdit==true">Сохранить изменения</span>
     <span (click)="cancel()" class="infoPanel">Отмена</span>
@@ -85,6 +137,27 @@
 </div>
 </body>
 
+<modal id="modal-select-developsBy">
+  <div class="modal">
+    <div class="modal-body">
+      <div class="variant-selection">
+        <a class="secondaryText header"> Добавить ответственных за формирование рабочей программы курса: </a>
+
+        <div *ngFor="let user of getPossibleDevelopsBy()" class="grid-options">
+          <div class="infoPanel" (click)="addDevelopsBy(user)">
+            <a class="secondaryText">#{{user.id}}</a> {{user.secondName}} {{user.firstName}}
+            <a class="secondaryText" *ngIf="user.faculty"> {{user.faculty.name}} </a>
+            <a class="secondaryText" *ngIf="user.department"> {{user.department.name}} </a>
+          </div>
+        </div>
+
+        <p></p>
+
+        <div class="infoPanel" (click)="closeModal('modal-select-developsBy');">Закрыть окно</div>
+      </div>
+    </div>
+  </div>
+</modal>
 
 <modal id="modal-select-skill">
   <div class="modal">

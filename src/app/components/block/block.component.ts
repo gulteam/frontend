@@ -1,48 +1,50 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../service/user.service';
+import {Course} from '../../entity/course';
 import {Location} from '@angular/common';
 import {ModalService} from '../../service/modal.service';
-import {FacultyService} from '../../service/faculty.service';
-import {Faculty} from '../../entity/faculty';
+import {User} from '../../entity/user';
+import {Block} from '../../entity/block';
+import {BlockService} from '../../service/block.service';
 
 @Component({
-  selector: 'app-faculty',
-  templateUrl: './faculty.component.html',
-  styleUrls: ['./faculty.component.css']
+  selector: 'app-course',
+  templateUrl: './block.component.html',
+  styleUrls: ['./block.component.css']
 })
-export class FacultyComponent implements OnInit {
-  faculty: Faculty;
+export class BlockComponent implements OnInit {
+  block: Block;
 
-  constructor(private facultyService: FacultyService,
-              private userService: UserService,
+  constructor(private userService: UserService,
               private router: Router,
               private location: Location,
               private route: ActivatedRoute,
+              private blockService: BlockService,
               private modalService: ModalService) {
   }
 
   ngOnInit() {
     let id = +this.route.snapshot.paramMap.get('id');
 
-    this.facultyService.getFaculty(id).subscribe(faculty => {
-      this.faculty = faculty;
+    this.blockService.getBlock(id).subscribe(block => {
+      this.block = block;
 
-      console.log(faculty);
+      console.log(block);
     });
   }
 
   save() {
-    this.facultyService.saveFaculty(this.faculty).subscribe(message => {
-      console.log('Faculty saved');
+    this.blockService.saveBlock(this.block).subscribe(message => {
+      console.log('Block saved');
       console.log(message);
       this.location.back();
     });
   }
 
   delete() {
-    this.facultyService.deleteFaculty(this.faculty.id).subscribe(message => {
-      console.log('Faculty deleted');
+    this.blockService.deleteBlock(this.block.id).subscribe(message => {
+      console.log('Block deleted');
       console.log(message);
       this.location.back();
     });

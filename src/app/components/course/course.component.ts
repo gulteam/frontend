@@ -8,6 +8,10 @@ import {SkillsService} from '../../service/skills.service';
 import {KnowledgeService} from '../../service/knowledge.service';
 import {ProgramService} from '../../service/program.service';
 import {ModalService} from '../../service/modal.service';
+import {FacultyService} from '../../service/faculty.service';
+import {Faculty} from '../../entity/faculty';
+import {User} from '../../entity/user';
+import {Competence} from '../../entity/competence';
 
 @Component({
   selector: 'app-course',
@@ -21,6 +25,13 @@ export class CourseComponent implements OnInit {
   allSkills: Skills[];
   allKnowledge: Knowledge[];
   allCourses: Course[];
+  allUsers: User[];
+
+  faculties: Faculty[];
+  departments: Department[];
+
+  noFaculty: boolean = true;
+  noDepartment: boolean = true;
 
   constructor(private userService: UserService,
               private router: Router,
@@ -30,7 +41,8 @@ export class CourseComponent implements OnInit {
               private skillsService: SkillsService,
               private knowledgeService: KnowledgeService,
               private programService: ProgramService,
-              private modalService: ModalService) {
+              private modalService: ModalService,
+              private facultyService: FacultyService) {
   }
 
   ngOnInit() {
@@ -44,6 +56,18 @@ export class CourseComponent implements OnInit {
       this.programService.getAllCoursesFromProgram(this.course.programId).subscribe(courses => {
         this.allCourses = courses;
       });
+
+      this.facultyService.getAllFaculties().subscribe(faculties => {
+        this.noFaculty = (this.course.faculty == null);
+
+        if (!this.noFaculty) {
+          this.course.faculty = faculties.find(faculty => this.course.faculty.id == faculty.id);
+        }
+
+        this.faculties = faculties;
+
+        this.onFacultyChanged();
+      });
     });
 
     this.skillsService.getAllSkills().subscribe(skills => {
@@ -52,6 +76,10 @@ export class CourseComponent implements OnInit {
 
     this.knowledgeService.getAllKnowledge().subscribe(knowledge => {
       this.allKnowledge = knowledge;
+    });
+
+    this.userService.getAllUsers().subscribe(users => {
+      this.allUsers = users;
     });
   }
 
@@ -176,5 +204,77 @@ export class CourseComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  facultyStateChanged() {
+    if (this.noFaculty) {
+      this.course.faculty = null;
+
+      this.noDepartment = true;
+      this.departmentStateChanged();
+    }
+  }
+
+  departmentStateChanged() {
+    if (this.noDepartment) {
+      this.course.department = null;
+    }
+  }
+
+  onFacultyChanged() {
+    let faculty = this.course.faculty;
+
+    if (faculty == null) {
+      this.departments = null;
+    }
+    else {
+      this.facultyService.getAllDepartments(faculty.id).subscribe(departments => {
+        this.noDepartment = (this.course.department == null);
+        if (!this.noDepartment) {
+          this.course.department = departments.find(department => this.course.department.id == department.id);
+        }
+        this.departments = departments;
+      });
+    }
+  }
+
+  getDevelopsBy(): User[] {
+    if (this.course == null) {
+      return null;
+    }
+
+    return this.allUsers.filter(user =>
+      this.course != null && this.course.developedBy.includes(user.id)
+    );
+  }
+
+
+  getPossibleDevelopsBy(): User[] {
+    if (this.course == null) {
+      return null;
+    }
+
+    return this.allUsers.filter(user =>
+      this.course != null && !this.course.developedBy.includes(user.id)
+    );
+  }
+
+  removeDevelopsBy(userToRemove: User) {
+    this.course.previousCourses = this.course.developedBy.filter(user => user != userToRemove.id);
+  }
+
+  addDevelopsBy(u: User) {
+    this.course.developedBy.push(u.id);
+  }
+
+  //--------------------------------------------------------------------------------------------------------------------------------------//
+
+  getDevelopsCompetences(): Competence[] {
+    if (this.course == null) {
+      return null;
+    }
+  }
+
+  removeCompetence(competence: Competence) {
   }
 }

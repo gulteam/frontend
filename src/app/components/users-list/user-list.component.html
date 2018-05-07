@@ -1,6 +1,15 @@
 <div *ngIf="users">
-  <div *ngFor="let user of users" (click)="selectUser(user)" class="infoPanel">
-    <span class ="secondaryText">Пользователь #{{user.id}}</span> {{user.login}} :: {{user.firstName}} {{user.secondName}}
+  <div *ngFor="let faculty of users.keys()" class="infoGroup">
+    {{faculty}}
+
+    <div *ngFor="let department of users.get(faculty).keys()" class="usersGroup">
+      <span class="secondaryText" *ngIf="department.length > 0">Кафедра: {{department}}</span>
+
+      <div *ngFor="let user of users.get(faculty).get(department)" (click)="selectUser(user)" class="infoPanel">
+        <span class="secondaryText">#{{user.id}}</span> {{user.login}} :: {{user.firstName}} {{user.secondName}}
+        <span class="secondaryText">({{user.role.name}})</span>
+      </div>
+    </div>
   </div>
 </div>
 

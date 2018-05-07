@@ -1,0 +1,54 @@
+<body>
+<div *ngIf="fgos">
+
+  <div class="infoGroup">
+    <span class="secondaryText">ФГОС #{{fgos.id}}</span>
+
+    <div class="grid-arguments">
+      <div class="grid-item">Код:</div>
+      <div class="grid-item"><input type="text" [(ngModel)]="fgos.code"></div>
+      <div class="grid-item">Название:</div>
+      <div class="grid-item"><input type="text" [(ngModel)]="fgos.name"></div>
+    </div>
+  </div>
+
+  <div class="infoGroup">
+    <span class="secondaryText">Структура и объём программы</span>
+
+    <div class="grid-arguments">
+      <div class="grid-item">Структура</div>
+      <div class="grid-item">Объём в з.е.</div>
+      <div class="grid-item">Блок 1. Дисциплины:</div>
+      <div class="grid-item"><input type="number" step="1" [(ngModel)]="fgos.disciplineVolumeFrom"></div>
+      <div class="grid-item">Блок 2. Практика:</div>
+      <div class="grid-item"><input type="number" step="1" [(ngModel)]="fgos.practiceVolumeFrom"></div>
+      <div class="grid-item">Блок 3. Аттестация:</div>
+      <div class="grid-item"><input type="number" step="1" [(ngModel)]="fgos.attestationVolumeFrom"></div>
+      <div class="grid-item">Объём программы</div>
+      <div class="grid-item"><input type="number" step="1" [(ngModel)]="fgos.summaryVolume"></div>
+    </div>
+  </div>
+
+  <div class="infoGroup">
+    <span class="secondaryText">Компетенции</span>
+    <div *ngFor="let competence of fgos.requireCompetence" class="infoPanel" (click)="editCompetence(competence)">
+      <span class="secondaryText">#{{competence.id}}</span> {{competence.code}} "{{competence.description}}"
+    </div>
+    <div class="infoPanel" (click)="addCompetence()">Добавить компетенцию</div>
+  </div>
+
+  <div class="infoGroup">
+    <span class="secondaryText">Обязательные курсы</span>
+    <div *ngFor="let course of fgos.requireCourses" class="infoPanel" (click)="editRequiredCourse(course)">
+      <span class="secondaryText">#{{course.id}}</span> {{course.name}}
+    </div>
+    <div class="infoPanel" (click)="addRequiredCourse()">Добавить курс</div>
+  </div>
+
+  <div class="buttonPanel">
+    <span (click)="save()" class="infoPanel">Сохранить изменения</span>
+    <span (click)="cancel()" class="infoPanel">Отмена</span>
+    <span (click)="delete()" class="deletePanel">Удалить ФГОС</span>
+  </div>
+</div>
+</body>

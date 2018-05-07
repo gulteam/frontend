@@ -1,0 +1,21 @@
+<body>
+<div *ngIf="competence">
+
+  <div class="infoGroup">
+    <span class="secondaryText">Компетенция #{{competence.id}}</span>
+
+    <div class="grid-arguments">
+      <div class="grid-item">Код:</div>
+      <div class="grid-item"><input type="text" [(ngModel)]="competence.code"></div>
+      <div class="grid-item">Название:</div>
+      <div class="grid-item"><input type="text" [(ngModel)]="competence.description"></div>
+    </div>
+  </div>
+
+  <div class="buttonPanel">
+    <span (click)="save()" class="infoPanel">Сохранить изменения</span>
+    <span (click)="cancel()" class="infoPanel">Отмена</span>
+    <span (click)="delete()" class="deletePanel">Удалить компетенцию</span>
+  </div>
+</div>
+</body>

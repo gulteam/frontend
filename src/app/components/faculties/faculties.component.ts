@@ -4,6 +4,7 @@ import {UserService} from '../../service/user.service';
 import {Location} from '@angular/common';
 import {FacultyService} from '../../service/faculty.service';
 import {ModalService} from '../../service/modal.service';
+import {Faculty} from '../../entity/faculty';
 
 @Component({
   selector: 'app-faculties',

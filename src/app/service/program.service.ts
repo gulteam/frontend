@@ -7,6 +7,7 @@ import {UserService} from './user.service';
 import {Message} from '../entity/message';
 import {Program} from '../entity/program';
 import {AnalyzeResult} from '../entity/AnalyzeResult';
+import {Block} from '../entity/block';
 
 @Injectable()
 export class ProgramService {
@@ -26,6 +27,12 @@ export class ProgramService {
     let allCoursesAddress = this.serverAddress + 'program/' + programId + '/allCourses';
 
     return this.http.get<Course[]>(allCoursesAddress, {headers: this.userService.getAuthHeaders()});
+  }
+
+  getAllTemplateCoursesFromProgram(programId: number): Observable<Block[]> {
+    let allCoursesAddress = this.serverAddress + 'program/' + programId + '/allTemplateCourses';
+
+    return this.http.get<Block[]>(allCoursesAddress, {headers: this.userService.getAuthHeaders()});
   }
 
   addProgram(): Observable<Program> {
@@ -58,8 +65,19 @@ export class ProgramService {
     return this.http.get<Course>(courseAddress, {headers: this.userService.getAuthHeaders()});
   }
 
+  addTemplateCourseToProgram(programId: number): Observable<Block> {
+    let courseAddress = this.serverAddress + 'program/' + programId + '/addTemplateCourse';
+
+    return this.http.get<Block>(courseAddress, {headers: this.userService.getAuthHeaders()});
+  }
+
   analyze(programId: number): Observable<AnalyzeResult> {
     let analyzeAddress = this.serverAddress + 'program/' + programId + '/analyze';
     return this.http.get<AnalyzeResult>(analyzeAddress, {headers: this.userService.getAuthHeaders()});
+  }
+
+  addCourseByTemplate(templateCourseId: number): Observable<Course> {
+    let analyzeAddress = this.serverAddress + 'block/' + templateCourseId + '/addCourse';
+    return this.http.get<Course>(analyzeAddress, {headers: this.userService.getAuthHeaders()});
   }
 }

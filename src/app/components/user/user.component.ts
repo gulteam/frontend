@@ -5,6 +5,7 @@ import {Location} from '@angular/common';
 import {User} from '../../entity/user';
 import {RolesService} from '../../service/roles.service';
 import {FacultyService} from '../../service/faculty.service';
+import {Faculty} from '../../entity/faculty';
 
 @Component({
   selector: 'user',

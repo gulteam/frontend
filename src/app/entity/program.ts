@@ -1,4 +1,6 @@
 import {User} from './user';
+import {Faculty} from './faculty';
+import {Fgos} from './fgos';
 
 export class Program{
   id: number;
@@ -6,4 +8,5 @@ export class Program{
   canEdit: boolean;
   faculty: Faculty;
   createdBy: User;
+  fgos: Fgos;
 }

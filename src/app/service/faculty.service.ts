@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import {Message} from '../entity/Message';
 import {Course} from '../entity/course';
 import {Program} from '../entity/program';
+import {Faculty} from '../entity/faculty';
 
 @Injectable()
 export class FacultyService {
