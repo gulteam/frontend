@@ -12,6 +12,7 @@ import {Course} from '../entity/course';
 import {ProfessionalStandardService} from './professional-standard.service';
 import {ProfessionalStandard} from '../entity/professional-standard';
 import {Subject} from 'rxjs/Subject';
+import {log} from 'util';
 
 @Injectable()
 export class SearchService extends Subject<Trajectory[]> {
@@ -74,13 +75,19 @@ export class SearchService extends Subject<Trajectory[]> {
     return this.possibleVariants;
   }
 
+  requestEmptyLine() {
+    this.request = "";
+    this.recountPossibleValues();
+  }
+
   requestLineChanged(request: string) {
     this.request = request;
     this.recountPossibleValues();
   }
 
   private recountPossibleValues() {
-    if (this.request) {
+    if (this.request != null) {
+      console.log(this.request);
       this.possibleVariants = this.allVariants.filter(variant => {
         let lowerVariant = variant.text.toLowerCase();
         let lowerRequest = this.request.toLowerCase();
@@ -165,5 +172,10 @@ export class SearchService extends Subject<Trajectory[]> {
 
   getPositiveVariants(): Variant[] {
     return this.positiveVariants;
+  }
+
+  clearRequest() {
+    this.request = null;
+    this.recountPossibleValues();
   }
 }

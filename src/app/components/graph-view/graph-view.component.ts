@@ -20,6 +20,7 @@ class VisualNode{
   }
 }
 
+
 @Component({
   selector: 'app-graph-view',
   templateUrl: './graph-view.component.html',
@@ -181,6 +182,7 @@ export class GraphViewComponent implements OnInit {
       return;
     }
 
+    this.context.font = "13pt Arial";
 
     this.context.strokeStyle = "#999999";
     this.context.fillStyle = "#999999";
@@ -217,7 +219,7 @@ export class GraphViewComponent implements OnInit {
       });
     }));
 
-    this.context.font = "12pt Arial";
+    //this.context.font = "13pt Arial";
 
     this.nodes.forEach(((value, key) => {
 
@@ -225,9 +227,9 @@ export class GraphViewComponent implements OnInit {
       let fontColor: string = "#000000";
 
       if (this.selectedTrajectory != null && this.isCourseSelected(key)) {
-        nodeColor = '#F2D1B3';
+        nodeColor = '#fffa7c';
       } else {
-        nodeColor = '#2D5F73';
+        nodeColor = '#d8e1ff';
       }
 
       this.context.fillStyle = nodeColor;

@@ -1,0 +1,19 @@
+<body>
+<div *ngIf="courseRequirement">
+
+  <div class="infoGroup">
+    <span class="secondaryText">Обязательная дисциплина #{{courseRequirement.id}}</span>
+
+    <div class="grid-arguments">
+      <div class="grid-item">Название:</div>
+      <div class="grid-item"><input type="text" [(ngModel)]="courseRequirement.name"></div>
+    </div>
+  </div>
+
+  <div class="buttonPanel">
+    <span (click)="save()" class="infoPanel">Сохранить изменения</span>
+    <span (click)="cancel()" class="infoPanel">Отмена</span>
+    <span (click)="delete()" class="deletePanel">Удалить дисциплину</span>
+  </div>
+</div>
+</body>

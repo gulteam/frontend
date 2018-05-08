@@ -1,3 +1,6 @@
+import {User} from './user';
+import {Faculty} from './faculty';
+
 export class Course{
   id: number;
   amount: number;
@@ -17,4 +20,12 @@ export class Course{
   developKnowledge: number[];
 
   programId: number;
+
+  canEdit: boolean;
+  canEditDevelopersList: boolean;
+  createdBy: User;
+
+  department: Department;
+  faculty: Faculty;
+  developedBy: number[];
 }

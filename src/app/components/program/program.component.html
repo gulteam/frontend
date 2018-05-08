@@ -1,19 +1,23 @@
-<button (click)="createProgram()">Создать</button>
+<body>
+<div *ngIf="program">
 
-<div *ngIf="programs">
-  <span *ngFor="let program of programs">
-    <span>Образовательная программа №{{program.id}}</span> {{program.name}}
-    <button (click)="createCourse(program)">Добавить курс</button>
-    <button (click)="deleteProgram(program)">Удалить программу</button>
-    <button (click)="gotoSearch(program)">Поиск по траекториям</button>
+  <span class="program">Программа #{{program.id}}</span>
 
-    <div *ngIf="courses.get(program)">
-      <li *ngFor="let course of courses.get(program)">
-        <span (click)="courseClicked(course)"> Курс №{{course.id}}</span> {{course.name}}
-      </li>
+  <div class="grid-arguments">
+    <div class="grid-item">Название:</div>
+    <div class="grid-item"><input type="text" [(ngModel)]="program.name"></div>
+    <div class="grid-item">Используемый ФГОС:</div>
+    <div class="grid-item">
+    <select [(ngModel)]="program.fgos" (change)="onFgosChanged()" [disabled]="allFgoses == null">
+      <option *ngFor="let fgos of allFgoses" [ngValue]="fgos">{{fgos.name}}</option>
+    </select>
     </div>
-  </span>
+  </div>
+
+  <div class="buttonPanel">
+    <span (click)="save()" class="infoPanel">Сохранить изменения</span>
+    <span (click)="cancel()" class="infoPanel">Отмена</span>
+    <span (click)="delete()" class="deletePanel">Удалить программу</span>
+  </div>
 </div>
-
-
-
+</body>

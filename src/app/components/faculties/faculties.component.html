@@ -1,0 +1,24 @@
+<span (click)="createFaculty()" class="infoPanel simpleButton">Добавить факультет</span>
+
+<div *ngIf="faculties">
+  <span *ngFor="let faculty of faculties">
+    <div class="infoGroup">
+      <a class="secondaryText">Факультет #{{faculty.id}} </a> {{faculty.name}}
+
+      <div class="buttonPanel">
+        <span (click)="editFaculty(faculty)" class="infoPanel">Редактировать факультет</span>
+        <span (click)="createDepartment(faculty)" class="infoPanel">Добавить кафедру</span>
+        <span (click)="deleteFaculty(faculty)" class="deletePanel">Удалить факультет</span>
+      </div>
+
+      <div *ngIf="departments.get(faculty)">
+        <div *ngFor="let department of departments.get(faculty)">
+          <div (click)="departmentClicked(department)" class="infoPanel">
+            <a class="secondaryText"> #{{department.id}} </a>
+            {{department.name}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </span>
+</div>

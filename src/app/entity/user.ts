@@ -1,3 +1,5 @@
+import {Faculty} from './faculty';
+
 export class User{
   id: number;
   firstName: string;

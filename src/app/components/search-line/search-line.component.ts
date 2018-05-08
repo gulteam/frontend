@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SearchService} from '../../service/search.service';
 import {Variant} from '../../entity/variant';
@@ -10,6 +10,7 @@ import {Variant} from '../../entity/variant';
 })
 export class SearchLineComponent implements OnInit {
   request: string;
+  @ViewChild('searchLine') searchLine: any;
 
   constructor(private searchService: SearchService, private router: Router, private route: ActivatedRoute) {
   }
@@ -17,6 +18,28 @@ export class SearchLineComponent implements OnInit {
   ngOnInit() {
     let id = +this.route.snapshot.paramMap.get('id');
     this.searchService.startSearchOnProgram(id);
+  }
+
+  onClick() {
+    this.searchService.requestEmptyLine();
+  }
+
+  onFocusOut(event) {
+    console.log(event.relatedTarget);
+
+    if (event.relatedTarget == null) {
+      this.searchService.clearRequest();
+      return;
+    }
+
+    console.log(event.relatedTarget.classList);
+
+    if (event.relatedTarget.classList.contains('option') ||
+      event.relatedTarget.classList.contains('value')) {
+      return;
+    }
+
+    this.searchService.clearRequest();
   }
 
   onSearchChange(value: string) {
@@ -28,10 +51,11 @@ export class SearchLineComponent implements OnInit {
   }
 
   addNegative(variant: Variant) {
+    this.searchLine.nativeElement.focus();
     this.searchService.addNegative(variant);
   }
-
   addPositive(variant: Variant) {
+    this.searchLine.nativeElement.focus();
     this.searchService.addPositive(variant);
   }
 
