@@ -26,6 +26,7 @@ export class CourseComponent implements OnInit {
   allKnowledge: Knowledge[];
   allCourses: Course[];
   allUsers: User[];
+  competences: Competence[];
 
   faculties: Faculty[];
   departments: Department[];
@@ -67,6 +68,11 @@ export class CourseComponent implements OnInit {
         this.faculties = faculties;
 
         this.onFacultyChanged();
+      });
+
+      this.programService.getAllRequiredCompetences(course.programId).subscribe(competences=>{
+        console.log(competences);
+        this.competences = competences;
       });
     });
 
@@ -270,11 +276,30 @@ export class CourseComponent implements OnInit {
   //--------------------------------------------------------------------------------------------------------------------------------------//
 
   getDevelopsCompetences(): Competence[] {
-    if (this.course == null) {
+    if (this.competences == null) {
       return null;
     }
+
+    return this.competences.filter(competence =>
+      this.course != null && this.course.developCompetence.includes(competence.id)
+    );
   }
 
-  removeCompetence(competence: Competence) {
+  getPossibleCompetences(): Competence[] {
+    if (this.competences == null) {
+      return null;
+    }
+
+    return this.competences.filter(competence =>
+      this.course != null && !this.course.developCompetence.includes(competence.id)
+    );
+  }
+
+  removeCompetence(competenceToRemove: Competence) {
+    this.course.developCompetence = this.course.developCompetence.filter(competence => competence != competenceToRemove.id);
+  }
+
+  addCompetence(competence: Competence){
+    this.course.developCompetence.push(competence.id);
   }
 }

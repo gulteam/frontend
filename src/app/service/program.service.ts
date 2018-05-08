@@ -8,6 +8,7 @@ import {Message} from '../entity/message';
 import {Program} from '../entity/program';
 import {AnalyzeResult} from '../entity/AnalyzeResult';
 import {Block} from '../entity/block';
+import {Competence} from '../entity/competence';
 
 @Injectable()
 export class ProgramService {
@@ -79,5 +80,10 @@ export class ProgramService {
   addCourseByTemplate(templateCourseId: number): Observable<Course> {
     let analyzeAddress = this.serverAddress + 'block/' + templateCourseId + '/addCourse';
     return this.http.get<Course>(analyzeAddress, {headers: this.userService.getAuthHeaders()});
+  }
+
+  getAllRequiredCompetences(programId: number): Observable<Competence[]>{
+    let competenceAddress = this.serverAddress + 'program/' + programId + '/allRequiredCompetences';
+    return this.http.get<Competence[]>(competenceAddress, {headers: this.userService.getAuthHeaders()});
   }
 }

@@ -52,9 +52,9 @@
     <div class="infoPanel" (click)="openModal('modal-select-knowledge')" *ngIf="course.canEdit==true">Добавить</div>
   </div>
 
-  <div *ngIf="allCompetences" class="infoGroup">
+  <div *ngIf="competences" class="infoGroup">
     <a class="secondaryText header"> Формируемые компетенции: </a>
-    <div *ngFor="let competence of getDevelopsCompetence()" class="grid-options-with-delete">
+    <div *ngFor="let competence of getDevelopsCompetences()" class="grid-options-with-delete">
       <div class="infoPanel">
         <a class="secondaryText"> #{{competence.id}} </a> {{competence.code}} "{{competence.description}}"
       </div>
@@ -163,7 +163,7 @@
   <div class="modal">
     <div class="modal-body">
       <div class="variant-selection">
-        <a class="secondaryText header"> Добавить развиваемые умения: </a>
+        <a class="secondaryText header"> Добавить формируемые умения: </a>
 
         <div *ngFor="let skill of getPossibleSkills()" class="grid-options">
           <div class="infoPanel" (click)="addSkill(skill)">
@@ -183,7 +183,7 @@
   <div class="modal">
     <div class="modal-body">
       <div class="variant-selection">
-      <a class="secondaryText header"> Добавить развиваемые навыки: </a>
+      <a class="secondaryText header"> Добавить формируемые навыки: </a>
 
       <div *ngFor="let knowledge of getPossibleKnowledge()" class="grid-options">
         <div class="infoPanel" (click)="addKnowledge(knowledge)">
@@ -214,6 +214,26 @@
         <p></p>
 
         <div class="infoPanel" (click)="closeModal('modal-select-course');">Закрыть окно</div>
+      </div>
+    </div>
+  </div>
+</modal>
+
+<modal id="modal-select-competence">
+  <div class="modal">
+    <div class="modal-body">
+      <div class="variant-selection">
+        <a class="secondaryText header"> Добавить формируемые компетенции: </a>
+
+        <div *ngFor="let competence of getPossibleCompetences()" class="grid-options">
+          <div class="infoPanel" (click)="addCompetence(competence)">
+            <a class="secondaryText">#{{competence.id}}</a> {{competence.code}} "{{competence.description}}"
+          </div>
+        </div>
+
+        <p></p>
+
+        <div class="infoPanel" (click)="closeModal('modal-select-competence');">Закрыть окно</div>
       </div>
     </div>
   </div>
