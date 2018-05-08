@@ -20,6 +20,7 @@ class VisualNode{
   }
 }
 
+
 @Component({
   selector: 'app-graph-view',
   templateUrl: './graph-view.component.html',
