@@ -9,4 +9,8 @@ export class User{
   role: Role;
   faculty: Faculty;
   department: Department;
+
+  canEdit: boolean;
+  canChangeRole: boolean;
+  canChangeFacultyAndDepartment: boolean;
 }

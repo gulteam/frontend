@@ -1,6 +1,7 @@
 import {CourseRequirement} from './course-requirement';
 import {Competence} from './competence';
 import {ProfessionalStandard} from './professional-standard';
+import {User} from './user';
 
 export class Fgos {
   id: number;
@@ -13,4 +14,8 @@ export class Fgos {
   summaryVolume: number;
   requireCourses: CourseRequirement[];
   professionalStandards: ProfessionalStandard[];
+
+  canUpdate: boolean;
+  canDelete: boolean;
+  createdBy: User;
 }

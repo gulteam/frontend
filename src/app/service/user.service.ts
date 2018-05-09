@@ -13,6 +13,7 @@ import {AuthData} from "../entity/authdata";
 import {ConnectionService} from "./connection.service";
 import {RegisterData} from "../entity/register-data";
 import {Message} from "../entity/message";
+import {GlobalPermissions} from '../entity/global-permissions';
 
 // Notifies subscribers if the status of authorization has been changed
 @Injectable()
@@ -22,11 +23,26 @@ export class UserService extends Subject<User> {
 
   private token: string;
   private savedUser: User;
+  private globalPermissions: GlobalPermissions = new GlobalPermissions();
 
   constructor(private connectionService: ConnectionService, private http: HttpClient) {
     super();
     this.serverAddress = connectionService.getServerAddress();
     this.restoreTokenFromCookies();
+    this.requireGlobalPermissions();
+  }
+
+  requireGlobalPermissions(){
+    let permissionsAddress = this.serverAddress + 'userPermissions';
+    this.http.get<GlobalPermissions>(permissionsAddress, {headers: this.getAuthHeaders()}).subscribe(permissions=>{
+      console.log(permissions);
+      this.globalPermissions = permissions;
+      this.next(this.savedUser);
+    });
+  }
+
+  getPermissions(): GlobalPermissions{
+    return this.globalPermissions;
   }
 
   getMyUserInfo(): Observable<User> {
@@ -78,8 +94,8 @@ export class UserService extends Subject<User> {
         this.token = null;
         this.savedUser = null;
 
-        observer.next(message);
         this.onUserStateChanged();
+        observer.next(message);
       });
     });
   }
@@ -105,6 +121,7 @@ export class UserService extends Subject<User> {
   }
 
   onUserStateChanged() {
+    this.requireGlobalPermissions();
     this.next(this.savedUser);
   }
 

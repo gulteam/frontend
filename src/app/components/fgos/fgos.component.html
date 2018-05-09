@@ -2,13 +2,13 @@
 <div *ngIf="fgos">
 
   <div class="infoGroup">
-    <span class="secondaryText">ФГОС #{{fgos.id}}</span>
+    <span class="secondaryText">ФГОС #{{fgos.id}} Создан: {{fgos.createdBy.firstName}} {{fgos.createdBy.secondName}}</span>
 
     <div class="grid-arguments">
       <div class="grid-item">Код:</div>
-      <div class="grid-item"><input type="text" [(ngModel)]="fgos.code"></div>
+      <div class="grid-item"><input type="text" [(ngModel)]="fgos.code" [disabled]="fgos.canUpdate == false"></div>
       <div class="grid-item">Название:</div>
-      <div class="grid-item"><input type="text" [(ngModel)]="fgos.name"></div>
+      <div class="grid-item"><input type="text" [(ngModel)]="fgos.name" [disabled]="fgos.canUpdate == false"></div>
     </div>
   </div>
 
@@ -19,13 +19,13 @@
       <div class="grid-item">Структура</div>
       <div class="grid-item">Объём в з.е.</div>
       <div class="grid-item">Блок 1. Дисциплины:</div>
-      <div class="grid-item"><input type="number" step="1" [(ngModel)]="fgos.disciplineVolumeFrom"></div>
+      <div class="grid-item"><input type="number" step="1" [(ngModel)]="fgos.disciplineVolumeFrom" [disabled]="fgos.canUpdate == false"></div>
       <div class="grid-item">Блок 2. Практика:</div>
-      <div class="grid-item"><input type="number" step="1" [(ngModel)]="fgos.practiceVolumeFrom"></div>
+      <div class="grid-item"><input type="number" step="1" [(ngModel)]="fgos.practiceVolumeFrom" [disabled]="fgos.canUpdate == false"></div>
       <div class="grid-item">Блок 3. Аттестация:</div>
-      <div class="grid-item"><input type="number" step="1" [(ngModel)]="fgos.attestationVolumeFrom"></div>
+      <div class="grid-item"><input type="number" step="1" [(ngModel)]="fgos.attestationVolumeFrom" [disabled]="fgos.canUpdate == false"></div>
       <div class="grid-item">Объём программы</div>
-      <div class="grid-item"><input type="number" step="1" [(ngModel)]="fgos.summaryVolume"></div>
+      <div class="grid-item"><input type="number" step="1" [(ngModel)]="fgos.summaryVolume" [disabled]="fgos.canUpdate == false"></div>
     </div>
   </div>
 
@@ -34,7 +34,7 @@
     <div *ngFor="let competence of fgos.requireCompetence" class="infoPanel" (click)="editCompetence(competence)">
       <span class="secondaryText">#{{competence.id}}</span> {{competence.code}} "{{competence.description}}"
     </div>
-    <div class="infoPanel" (click)="addCompetence()">Добавить компетенцию</div>
+    <div class="infoPanel" (click)="addCompetence()" *ngIf="fgos.canUpdate == true">Добавить компетенцию</div>
   </div>
 
   <div class="infoGroup">
@@ -42,7 +42,7 @@
     <div *ngFor="let course of fgos.requireCourses" class="infoPanel" (click)="editRequiredCourse(course)">
       <span class="secondaryText">#{{course.id}}</span> {{course.name}}
     </div>
-    <div class="infoPanel" (click)="addRequiredCourse()">Добавить курс</div>
+    <div class="infoPanel" (click)="addRequiredCourse()" *ngIf="fgos.canUpdate == true">Добавить курс</div>
   </div>
 
   <div class="infoGroup">
@@ -52,16 +52,16 @@
         <a class="secondaryText">#{{profStandard.id}}</a> {{profStandard.name}}
       </div>
 
-      <div (click)="removeProfStandard(profStandard)" class="deletePanel" *ngIf="true">Удалить</div>
+      <div (click)="removeProfStandard(profStandard)" class="deletePanel" *ngIf="fgos.canUpdate == true">Удалить</div>
     </div>
 
-    <div class="infoPanel" (click)="openModal('modal-select-prof-standard')">Добавить проф. стандарт</div>
+    <div class="infoPanel" (click)="openModal('modal-select-prof-standard')" *ngIf="fgos.canUpdate == true">Добавить проф. стандарт</div>
   </div>
 
   <div class="buttonPanel">
     <span (click)="save()" class="infoPanel">Сохранить изменения</span>
     <span (click)="cancel()" class="infoPanel">Отмена</span>
-    <span (click)="delete()" class="deletePanel">Удалить ФГОС</span>
+    <span (click)="delete()" class="deletePanel" *ngIf="fgos.canDelete == true">Удалить ФГОС</span>
   </div>
 </div>
 </body>
