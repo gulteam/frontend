@@ -20,7 +20,7 @@ import {Competence} from '../../entity/competence';
 })
 export class CourseComponent implements OnInit {
   course: Course;
-  attestationForms: string[];
+  attestationForms: string[] = ['EXAM', 'CREDIT', 'DIFFERENTATED_CREDIT'];
 
   allSkills: Skills[];
   allKnowledge: Knowledge[];

@@ -12,13 +12,10 @@
       <div class="grid-item"><input type="number" step="1" [(ngModel)]="block.amount" [disabled]="block.canEdit==false"></div>
       <div class="grid-item"> Семестр:</div>
       <div class="grid-item"><input type="number" step="1" [(ngModel)]="block.semester" [disabled]="block.canEdit==false"></div>
-    </div>
-
-    <div *ngIf="attestationForms">
-      Форма аттестации:
-      <select [(ngModel)]="block.attestationForm">
+      <div class="grid-item">Форма аттестации:</div>
+      <div class="grid-item"><select [(ngModel)]="block.attestationForm" [disabled]="block.canEdit==false">
         <option *ngFor="let form of attestationForms" [ngValue]="form">{{form}}</option>
-      </select>
+      </select></div>
     </div>
   </div>
 

@@ -45,6 +45,19 @@
     <div class="infoPanel" (click)="addRequiredCourse()">Добавить курс</div>
   </div>
 
+  <div class="infoGroup">
+    <span class="secondaryText">Проф. стандарты</span>
+    <div *ngFor="let profStandard of fgos.professionalStandards" class="grid-options-with-delete">
+      <div class="infoPanel">
+        <a class="secondaryText">#{{profStandard.id}}</a> {{profStandard.name}}
+      </div>
+
+      <div (click)="removeProfStandard(profStandard)" class="deletePanel" *ngIf="true">Удалить</div>
+    </div>
+
+    <div class="infoPanel" (click)="openModal('modal-select-prof-standard')">Добавить проф. стандарт</div>
+  </div>
+
   <div class="buttonPanel">
     <span (click)="save()" class="infoPanel">Сохранить изменения</span>
     <span (click)="cancel()" class="infoPanel">Отмена</span>
@@ -52,3 +65,24 @@
   </div>
 </div>
 </body>
+
+<modal id="modal-select-prof-standard">
+  <div class="modal">
+    <div class="modal-body">
+      <div class="variant-selection">
+        <a class="secondaryText header"> Добавить ФГОС: </a>
+
+        <div *ngFor="let standard of getPossibleProfStandards()" class="grid-options">
+          <div class="infoPanel" (click)="addStandard(standard)">
+            <a class="secondaryText">#{{standard.id}}</a> {{standard.code}} "{{standard.name}}"
+          </div>
+        </div>
+
+        <p></p>
+
+        <div class="infoPanel" (click)="closeModal('modal-select-prof-standard');">Закрыть окно</div>
+      </div>
+    </div>
+  </div>
+</modal>
+

@@ -1,3 +1,5 @@
+import {AnalyzeMessage} from './analyze-message';
+
 export class AnalyzeResult{
-  errorMessages: string[];
+  messages: AnalyzeMessage[];
 }
