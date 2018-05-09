@@ -1,5 +1,6 @@
 import {CourseRequirement} from './course-requirement';
 import {Competence} from './competence';
+import {ProfessionalStandard} from './professional-standard';
 
 export class Fgos {
   id: number;
@@ -11,4 +12,5 @@ export class Fgos {
   attestationVolumeFrom: number;
   summaryVolume: number;
   requireCourses: CourseRequirement[];
+  professionalStandards: ProfessionalStandard[];
 }
