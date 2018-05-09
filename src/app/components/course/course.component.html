@@ -17,7 +17,7 @@
       <div class="grid-item"><input type="number" step="1" [(ngModel)]="course.semester"
                                     [disabled]="course.canEdit==false || course.implementsTemplate == true"></div>
       <div class="grid-item" *ngIf="attestationForms">Форма аттестации:</div>
-      <div class="grid-item"><select [(ngModel)]="course.attestationForm">
+      <div class="grid-item"><select [(ngModel)]="course.attestationForm" [disabled]="course.canEdit==false || course.implementsTemplate == true">
         <option *ngFor="let form of attestationForms" [ngValue]="form">{{form}}</option>
       </select></div>
     </div>

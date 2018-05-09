@@ -15,6 +15,7 @@ import {BlockService} from '../../service/block.service';
 })
 export class BlockComponent implements OnInit {
   block: Block;
+  attestationForms: string[] = ['EXAM', 'CREDIT', 'DIFFERENTATED_CREDIT'];
 
   constructor(private userService: UserService,
               private router: Router,
