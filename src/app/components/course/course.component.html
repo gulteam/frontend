@@ -4,20 +4,20 @@
   <div class="infoGroup">
     <div class="secondaryText header">
       Курс #{{course.id}}. Создан: {{course.createdBy.firstName}} {{course.createdBy.secondName}}
-      <span *ngIf="course.canEdit==false" class="secondaryText">(Только чтение)</span>
+      <span *ngIf="course.canUpdate==false" class="secondaryText">(Только чтение)</span>
     </div>
 
     <div class="grid-arguments">
       <div class="grid-item"> Название:</div>
-      <div class="grid-item"><input type="text" [(ngModel)]="course.name" [disabled]="course.canEdit==false"></div>
+      <div class="grid-item"><input type="text" [(ngModel)]="course.name" [disabled]="course.canUpdate==false"></div>
       <div class="grid-item"> Количество часов:</div>
       <div class="grid-item"><input type="number" step="1" [(ngModel)]="course.amount"
-                                    [disabled]="course.canEdit==false || course.implementsTemplate == true"></div>
+                                    [disabled]="course.canUpdate==false || course.implementsTemplate == true"></div>
       <div class="grid-item"> Семестр:</div>
       <div class="grid-item"><input type="number" step="1" [(ngModel)]="course.semester"
-                                    [disabled]="course.canEdit==false || course.implementsTemplate == true"></div>
+                                    [disabled]="course.canUpdate==false || course.implementsTemplate == true"></div>
       <div class="grid-item" *ngIf="attestationForms">Форма аттестации:</div>
-      <div class="grid-item"><select [(ngModel)]="course.attestationForm" [disabled]="course.canEdit==false || course.implementsTemplate == true">
+      <div class="grid-item"><select [(ngModel)]="course.attestationForm" [disabled]="course.canUpdate==false || course.implementsTemplate == true">
         <option *ngFor="let form of attestationForms" [ngValue]="form">{{form}}</option>
       </select></div>
     </div>
@@ -32,10 +32,10 @@
         <a class="secondaryText">#{{skill.id}}</a> {{skill.description}}
       </div>
 
-      <div (click)="removeSkill(skill)" class="deletePanel" *ngIf="course.canEdit==true">Удалить</div>
+      <div (click)="removeSkill(skill)" class="deletePanel" *ngIf="course.canUpdate==true">Удалить</div>
     </div>
 
-    <div class="infoPanel" (click)="openModal('modal-select-skill')" *ngIf="course.canEdit==true">Добавить</div>
+    <div class="infoPanel" (click)="openModal('modal-select-skill')" *ngIf="course.canUpdate==true">Добавить</div>
   </div>
 
 
@@ -46,10 +46,10 @@
         <a class="secondaryText"> #{{knowledge.id}} </a> {{knowledge.description}}
       </div>
 
-      <div (click)="removeKnowledge(knowledge)" class="deletePanel" *ngIf="course.canEdit==true">Удалить</div>
+      <div (click)="removeKnowledge(knowledge)" class="deletePanel" *ngIf="course.canUpdate==true">Удалить</div>
     </div>
 
-    <div class="infoPanel" (click)="openModal('modal-select-knowledge')" *ngIf="course.canEdit==true">Добавить</div>
+    <div class="infoPanel" (click)="openModal('modal-select-knowledge')" *ngIf="course.canUpdate==true">Добавить</div>
   </div>
 
   <div *ngIf="competences" class="infoGroup">
@@ -59,10 +59,10 @@
         <a class="secondaryText"> #{{competence.id}} </a> {{competence.code}} "{{competence.description}}"
       </div>
 
-      <div (click)="removeCompetence(competence)" class="deletePanel" *ngIf="course.canEdit==true">Удалить</div>
+      <div (click)="removeCompetence(competence)" class="deletePanel" *ngIf="course.canUpdate==true">Удалить</div>
     </div>
 
-    <div class="infoPanel" (click)="openModal('modal-select-competence')" *ngIf="course.canEdit==true">Добавить</div>
+    <div class="infoPanel" (click)="openModal('modal-select-competence')" *ngIf="course.canUpdate==true">Добавить</div>
   </div>
 
   <div *ngIf="allCourses" class="infoGroup">
@@ -72,10 +72,10 @@
       <div class="infoPanel">
         <a class="secondaryText"> #{{course.id}}</a> {{course.name}}
       </div>
-      <div (click)="removeCourse(course)" class="deletePanel" *ngIf="course.canEdit==true">Удалить</div>
+      <div (click)="removeCourse(course)" class="deletePanel" *ngIf="course.canUpdate==true">Удалить</div>
     </div>
 
-    <div class="infoPanel" (click)="openModal('modal-select-course')" *ngIf="course.canEdit==true">Добавить</div>
+    <div class="infoPanel" (click)="openModal('modal-select-course')" *ngIf="course.canUpdate==true">Добавить</div>
   </div>
 
 
@@ -89,30 +89,30 @@
   </div>
 
   <div class="infoGroup">
-    <div *ngIf="course.canEditDevelopersList==false" class="secondaryText">(Только чтение)</div>
+    <div *ngIf="course.canUpdateDevelopersList==false" class="secondaryText">(Только чтение)</div>
     <a class="secondaryText header">Ответственные за курс: </a>
 
     <div class="grid-arguments">
       <div *ngIf="faculties" class="grid-item">Факультет:</div>
       <div *ngIf="faculties" class="grid-item">
         <select [(ngModel)]="course.faculty" (change)="onFacultyChanged()"
-                [disabled]="noFaculty || course.canEditDevelopersList == false">
+                [disabled]="noFaculty || course.canUpdateDevelopersList == false">
           <option *ngFor="let faculty of faculties" [ngValue]="faculty">{{faculty.name}}</option>
         </select>
 
         <input type="checkbox" [checked]="!course.faculty" (change)="facultyStateChanged()" [(ngModel)]="noFaculty"
-               [disabled]="course.canEditDevelopersList==false">
+               [disabled]="course.canUpdateDevelopersList==false">
         Не привязан к факультету
       </div>
 
       <div *ngIf="course.faculty && departments" class="grid-item">Кафедра:</div>
       <div *ngIf="course.faculty && departments" class="grid-item"><select [(ngModel)]="course.department"
-                                                                           [disabled]="noDepartment || course.canEditDevelopersList == false">
+                                                                           [disabled]="noDepartment || course.canUpdateDevelopersList == false">
         <option *ngFor="let department of departments" [ngValue]="department">{{department.name}}</option>
       </select>
 
         <input type="checkbox" [checked]="!course.department" (change)="departmentStateChanged()"
-               [(ngModel)]="noDepartment" [disabled]="course.canEditDevelopersList==false">
+               [(ngModel)]="noDepartment" [disabled]="course.canUpdateDevelopersList==false">
         Не привязан к кафедре
       </div>
     </div>
@@ -124,18 +124,18 @@
         <a class="secondaryText">#{{user.id}}</a> {{user.secondName}} {{user.firstName}}
       </div>
 
-      <div (click)="removeDevelopsBy(user)" class="deletePanel" *ngIf="course.canEditDevelopersList==true">Удалить</div>
+      <div (click)="removeDevelopsBy(user)" class="deletePanel" *ngIf="course.canUpdateDevelopersList==true">Удалить</div>
     </div>
 
-    <div class="infoPanel" (click)="openModal('modal-select-developsBy')" *ngIf="course.canEditDevelopersList==true">
+    <div class="infoPanel" (click)="openModal('modal-select-developsBy')" *ngIf="course.canUpdateDevelopersList==true">
       Добавить
     </div>
   </div>
 
   <div class="buttonPanel">
-    <span (click)="save()" class="infoPanel" *ngIf="course.canEdit==true">Сохранить изменения</span>
+    <span (click)="save()" class="infoPanel" *ngIf="course.canUpdate==true">Сохранить изменения</span>
     <span (click)="cancel()" class="infoPanel">Отмена</span>
-    <span (click)="delete()" class="deletePanel" *ngIf="course.canEdit==true">Удалить курс</span>
+    <span (click)="delete()" class="deletePanel" *ngIf="course.canDelete==true">Удалить курс</span>
   </div>
 
 </div>

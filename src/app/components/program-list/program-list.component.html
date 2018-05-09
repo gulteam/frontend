@@ -1,6 +1,6 @@
-<span (click)="createProgram()" class="infoPanel simpleButton">Добавить образовательную программу</span>
+<span (click)="createProgram()" class="infoPanel simpleButton" *ngIf="userService_.getPermissions() && userService_.getPermissions().canCreateProgram">Добавить образовательную программу</span>
 
-<div *ngIf="programs">
+<div *ngIf="programs && userService_.getPermissions() && userService_.getPermissions().canReadProgramList">
   <span *ngFor="let program of programs">
     <div class="infoGroup">
       <a class="secondaryText">Образовательная программа #{{program.id}} </a> {{program.name}}
@@ -8,7 +8,7 @@
       <span *ngIf="program.fgos" class="secondaryText">Разрабатывается по ФГОС: {{program.fgos.code}} "{{program.fgos.name}}"</span>
       <span *ngIf="!program.fgos" class="secondaryText">Разрабатывается без ФГОС.</span>
 
-      <span *ngIf="program.canEdit==false" class="secondaryText">(Только чтение)</span>
+      <span *ngIf="program.canUpdate==false" class="secondaryText">(Только чтение)</span>
       <div class="secondaryText">
         Факультет: {{program.faculty.name}}
       </div>
@@ -17,13 +17,13 @@
       </div>
 
       <div class="buttonPanel">
-        <span (click)="createCourse(program)" class="infoPanel" *ngIf="program.canEdit==true">Добавить обязательную дисциплину</span>
-        <span (click)="createTemplateCourse(program)" class="infoPanel" *ngIf="program.canEdit==true">Добавить блок вариативных дисциплин</span>
+        <span (click)="createCourse(program)" class="infoPanel" *ngIf="program.canUpdate==true">Добавить обязательную дисциплину</span>
+        <span (click)="createTemplateCourse(program)" class="infoPanel" *ngIf="program.canUpdate==true">Добавить блок вариативных дисциплин</span>
         <span (click)="gotoSearch(program)" class="infoPanel">Поиск по траекториям</span>
         <span (click)="analyze(program)" class="infoPanel">Анализ корректности</span>
-        <span (click)="edit(program)" class="infoPanel" *ngIf="program.canEdit==true">Редактировать программу</span>
+        <span (click)="edit(program)" class="infoPanel" *ngIf="program.canDelete==true">Редактировать программу</span>
         <span (click)="deleteProgram(program)" class="deletePanel"
-              *ngIf="program.canEdit==true">Удалить программу</span>
+              *ngIf="program.canUpdate==true">Удалить программу</span>
       </div>
 
       <div class="templateBlock">
@@ -34,7 +34,7 @@
         <div *ngFor="let course of courses.get(program)">
           <div (click)="courseClicked(course)" class="infoPanel" *ngIf="course.implementsTemplate==false">
             <a class="secondaryText"> #{{course.id}} </a>
-            {{course.name}} <span *ngIf="course.canEdit==false" class="secondaryText">(Только чтение)</span>
+            {{course.name}} <span *ngIf="course.canUpdate==false" class="secondaryText">(Только чтение)</span>
              <span *ngIf="course.implementsTemplate" class="secondaryText">(Generic)</span>
           </div>
         </div>
@@ -48,16 +48,16 @@
 
         <div *ngFor="let block of templateCourses.get(program)" class="templateBlock">
           <div class="secondaryText">
-            Блок #{{block.id}}. Семестр: {{block.semester}}. Длительность: {{block.amount}} ч. <span *ngIf="block.canEdit==false" class="secondaryText">(Только чтение)</span>
-            <span (click)="createCourseByTemplate(program, block)" class="infoPanel" *ngIf="program.canEdit==true">Добавить вариативную дисциплину</span>
-            <span (click)="editBlock(block)" class="infoPanel" *ngIf="program.canEdit==true">Редактировать блок</span>
+            Блок #{{block.id}}. Семестр: {{block.semester}}. Длительность: {{block.amount}} ч. <span *ngIf="block.canUpdate==false" class="secondaryText">(Только чтение)</span>
+            <span (click)="createCourseByTemplate(program, block)" class="infoPanel" *ngIf="program.canAddVariableCourse==true">Добавить вариативную дисциплину</span>
+            <span (click)="editBlock(block)" class="infoPanel" *ngIf="program.canUpdate==true">Редактировать блок</span>
           </div>
 
           <div *ngFor="let course of courses.get(program)">
           <div (click)="courseClicked(course)" class="infoPanel"
                *ngIf="course.implementsTemplate==true && course.templateCourse==block.id">
             <a class="secondaryText"> #{{course.id}} </a>
-            {{course.name}} <span *ngIf="course.canEdit==false" class="secondaryText">(Только чтение)</span>
+            {{course.name}} <span *ngIf="course.canUpdate==false" class="secondaryText">(Только чтение)</span>
           </div>
         </div>
         </div>

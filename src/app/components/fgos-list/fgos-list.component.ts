@@ -14,11 +14,14 @@ import {FgosService} from '../../service/fgos.service';
 })
 export class FgosListComponent implements OnInit {
   fgosList: Fgos[];
+  userService_: UserService;
 
   constructor(private fgosService: FgosService,
               private router: Router,
               private location: Location,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private userService: UserService) {
+    this.userService_ = userService;
   }
 
   ngOnInit() {

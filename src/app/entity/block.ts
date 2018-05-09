@@ -4,5 +4,5 @@ export class Block{
   semester: number;
   attestationForm: string;
 
-  canEdit: boolean;
+  canUpdate: boolean;
 }

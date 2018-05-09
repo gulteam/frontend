@@ -14,6 +14,7 @@ import {Faculty} from '../../entity/faculty';
 export class FacultiesComponent implements OnInit {
   departments: Map<Faculty, Department[]> = new Map();
   faculties: Faculty[];
+  userService_: UserService;
 
   constructor(private facultyService: FacultyService,
               private userService: UserService,
@@ -21,6 +22,7 @@ export class FacultiesComponent implements OnInit {
               private location: Location,
               private route: ActivatedRoute,
               private modalService: ModalService) {
+    this.userService_ = userService;
   }
 
   ngOnInit() {
@@ -63,7 +65,9 @@ export class FacultiesComponent implements OnInit {
   }
 
   departmentClicked(department: Department) {
-    this.router.navigate(['/department', department.id]);
+    if (this.userService_.getPermissions().canEditFacultiesAndDepartments == true) {
+      this.router.navigate(['/department', department.id]);
+    }
   }
 
   /*gotoSearch(program: Program) {

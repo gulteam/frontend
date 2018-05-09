@@ -21,8 +21,9 @@ export class Course{
 
   programId: number;
 
-  canEdit: boolean;
-  canEditDevelopersList: boolean;
+  canUpdate: boolean;
+  canDelete: boolean;
+  canUpdateDevelopersList: boolean;
   createdBy: User;
 
   department: Department;

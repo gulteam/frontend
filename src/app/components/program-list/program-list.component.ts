@@ -22,6 +22,7 @@ export class ProgramListComponent implements OnInit {
   courses: Map<Program, Course[]> = new Map();
 
   programs: Program[];
+  userService_: UserService;
 
   constructor(private userService: UserService,
               private router: Router,
@@ -30,6 +31,7 @@ export class ProgramListComponent implements OnInit {
               private courseService: CourseService,
               private programService: ProgramService,
               private modalService: ModalService) {
+    this.userService_ = this.userService;
   }
 
   ngOnInit() {

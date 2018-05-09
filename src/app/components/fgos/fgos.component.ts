@@ -68,7 +68,9 @@ export class FgosComponent implements OnInit {
   }
 
   editCompetence(competence: Competence) {
-    this.router.navigate(['/competence', competence.id]);
+    if(this.fgos.canUpdate) {
+      this.router.navigate(['/competence', competence.id]);
+    }
   }
 
   addRequiredCourse() {
@@ -78,7 +80,9 @@ export class FgosComponent implements OnInit {
   }
 
   editRequiredCourse(requiredCourse: CourseRequirement) {
-    this.router.navigate(['/courseRequirement', requiredCourse.id]);
+    if(this.fgos.canUpdate) {
+      this.router.navigate(['/courseRequirement', requiredCourse.id]);
+    }
   }
 
   removeProfStandard(profStandardToRemove: ProfessionalStandard) {
