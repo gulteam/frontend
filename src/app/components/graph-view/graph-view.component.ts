@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Trajectory} from '../../entity/Trajectory';
+import {Trajectory} from '../../entity/trajectory';
 import {Course} from '../../entity/course';
 
 class Position{

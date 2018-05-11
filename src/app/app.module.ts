@@ -9,7 +9,6 @@ import {UserService} from "./service/user.service";
 import {AuthComponent} from "./components/auth/auth.component";
 import {AppRoutingModule} from "./module/app-routing.module";
 import {CourseComponent} from "./components/course/course.component";
-import {ProgramListComponent} from './components/program-list/program-list.component';
 import {CourseService} from './service/course.service';
 import {ProgramService} from './service/program.service';
 import {SearchLineComponent} from './components/search-line/search-line.component';
@@ -20,12 +19,19 @@ import {GraphViewComponent} from './components/graph-view/graph-view.component';
 import {UserListComponent} from './components/users-list/user-list.component';
 import {UserComponent} from './components/user/user.component';
 import {NavigationPanelComponent} from './components/navigation-panel/navigation-panel.component';
+import {AllProfessionalStandardComponent} from './components/all_professional_standart/all_professional_standart.component';
+import {AllProfessionalStandardStatusComponent} from './components/all_professional_standart_status/all_professional_standart_status.component';
 import {RolesService} from './service/roles.service';
 import {FacultyService} from './service/faculty.service';
 import {SkillsService} from './service/skills.service';
 import {KnowledgeService} from './service/knowledge.service';
+import {ProffesionalStandartComponent} from "./components/standart/standart.component";
+import {ProfSearchComponent} from "./components/profSearch/prof_search.component";
+import {ProfSearchService} from "./service/prof-search.service";
+import {ProfSearchLineComponent} from "./components/prof-search-line/prof-search-line.component";
 import {AnalyzeComponent} from './components/analyze/analyze.component';
 import {ModalComponent} from './components/modal/modal.component';
+import {StatusComponent} from './components/not-in-educational-for-standard/not-in-educational-for-standard.component';
 import {ModalService} from './service/modal.service';
 import {FacultiesComponent} from './components/faculties/faculties.component';
 import {DepartmentComponent} from './components/department/department.component';
@@ -41,13 +47,14 @@ import {CompetenceService} from './service/competence.service';
 import {CourseRequirementService} from './service/course-requirement.service';
 import {CourseRequirementComponent} from './components/course-requirement/course-requirement.component';
 import {CompetenceComponent} from './components/competence/competence.component';
+import {ProgramListComponent} from './components/program-list/program-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     CourseComponent,
-    ProgramListComponent,
+    ProgramComponent,
     SearchLineComponent,
     SearchComponent,
     GraphViewComponent,
@@ -55,6 +62,14 @@ import {CompetenceComponent} from './components/competence/competence.component'
     UserComponent,
     NavigationPanelComponent,
     AnalyzeComponent,
+    ModalComponent,
+    NavigationPanelComponent,
+    AllProfessionalStandardComponent,
+    ProffesionalStandartComponent,
+    ProfSearchComponent,
+    ProfSearchLineComponent,
+    AllProfessionalStandardStatusComponent,
+    StatusComponent,
     ModalComponent,
     FacultiesComponent,
     DepartmentComponent,
@@ -64,7 +79,8 @@ import {CompetenceComponent} from './components/competence/competence.component'
     FgosListComponent,
     FgosComponent,
     CompetenceComponent,
-    CourseRequirementComponent
+    CourseRequirementComponent,
+    ProgramListComponent
   ],
   imports: [
     BrowserModule,
@@ -83,6 +99,9 @@ import {CompetenceComponent} from './components/competence/competence.component'
     FacultyService,
     SkillsService,
     KnowledgeService,
+    ModalService,
+    KnowledgeService,
+    ProfSearchService,
     ModalService,
     DepartmentService,
     BlockService,
