@@ -1,0 +1,23 @@
+.error{
+  border-left: 6px solid darkred;
+}
+
+.error:hover{
+  border-left: 6px solid red;
+}
+
+.warning{
+  border-left: 6px solid darkorange;
+}
+
+.warning:hover{
+  border-left: 6px solid orange;
+}
+
+.info{
+  border-left: 6px solid darkgrey;
+}
+
+.info:hover{
+  border-left: 6px solid grey;
+}

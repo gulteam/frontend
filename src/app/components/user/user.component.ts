@@ -5,6 +5,7 @@ import {Location} from '@angular/common';
 import {User} from '../../entity/user';
 import {RolesService} from '../../service/roles.service';
 import {FacultyService} from '../../service/faculty.service';
+import {Faculty} from '../../entity/faculty';
 
 @Component({
   selector: 'user',
@@ -34,15 +35,32 @@ export class UserComponent implements OnInit {
     this.userService.getUser(id).subscribe(user => {
       this.user = user;
 
-      this.rolesService.getAllRoles().subscribe(roles =>{
+      this.rolesService.getAllRoles().subscribe(roles => {
         this.user.role = roles.find(role => this.user.role.id == role.id);
         this.roles = roles;
+
+        let currentUserRole = this.userService.getSavedUser().role.name;
+
+        // Todo: dis looks like a kostyl. How can i change it?
+        if (this.user.canChangeRole) {
+          if (currentUserRole != 'ADMINISTRATOR') {
+            this.roles = this.roles.filter(r => {
+              return r.name != 'ADMINISTRATOR';
+            });
+
+            if (currentUserRole != 'DEAN_MEMBER') {
+              this.roles = this.roles.filter(r => {
+                return r.name != 'DEAN_MEMBER';
+              });
+            }
+          }
+        }
       });
 
-      this.facultyService.getAllFaculties().subscribe(faculties =>{
+      this.facultyService.getAllFaculties().subscribe(faculties => {
         this.noFaculty = (this.user.faculty == null);
 
-        if(!this.noFaculty) {
+        if (!this.noFaculty) {
           this.user.faculty = faculties.find(faculty => this.user.faculty.id == faculty.id);
         }
         this.faculties = faculties;
@@ -53,25 +71,25 @@ export class UserComponent implements OnInit {
     });
   }
 
-  onFacultyChanged(){
+  onFacultyChanged() {
     let faculty = this.user.faculty;
 
-    if(faculty == null){
+    if (faculty == null) {
       this.departments = null;
     }
-    else{
-      this.facultyService.getAllDepartments(faculty.id).subscribe(departments =>{
+    else {
+      this.facultyService.getAllDepartments(faculty.id).subscribe(departments => {
         this.noDepartment = (this.user.department == null);
-        if(!this.noDepartment) {
+        if (!this.noDepartment) {
           this.user.department = departments.find(department => this.user.department.id == department.id);
         }
         this.departments = departments;
-      })
+      });
     }
   }
 
   save() {
-    this.userService.saveUser(this.user).subscribe(message=>{
+    this.userService.saveUser(this.user).subscribe(message => {
       console.log('User saved');
       this.location.back();
     });
@@ -89,7 +107,7 @@ export class UserComponent implements OnInit {
   }
 
   facultyStateChanged() {
-    if(this.noFaculty){
+    if (this.noFaculty) {
       this.user.faculty = null;
 
       this.noDepartment = true;
@@ -98,7 +116,7 @@ export class UserComponent implements OnInit {
   }
 
   departmentStateChanged() {
-    if(this.noDepartment){
+    if (this.noDepartment) {
       this.user.department = null;
     }
   }

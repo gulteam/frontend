@@ -1,17 +1,18 @@
-<app-search-line></app-search-line>
-<p></p>
-<p></p>
+<div>
+  <app-search-line></app-search-line>
+  <p></p>
+  <p></p>
 
   <span *ngIf="getTrajectories()">
-    <div *ngFor="let trajectory of getTrajectories()" (click)="trajectoryClicked(trajectory)">
+    <div  class="trajectoryPanel" *ngFor="let trajectory of getTrajectories()" (click)="trajectoryClicked(trajectory)">
       Траектория:
-      <span *ngFor="let course of trajectory.courses" (click)="courseClicked(course)">
-        {{course.name}} |
+      <span class="course" *ngFor="let course of trajectory.courses" (click)="courseClicked(course)">
+        {{course.name}}<span *ngIf="course != trajectory.courses[trajectory.courses.length - 1]">, </span>
       </span>
     </div>
   </span>
 
-<div class="graphContainer">
-  <app-graph-view #graphView></app-graph-view>
+  <div class="graphContainer">
+    <app-graph-view #graphView></app-graph-view>
+  </div>
 </div>
-

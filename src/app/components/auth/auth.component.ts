@@ -34,6 +34,7 @@ export class AuthComponent implements OnInit {
   signOut(): void{
     this.userService.signOut().subscribe(message => {
         console.log('Signed out');
+        window.location.reload();
       },
       error => {
         console.error(error);
@@ -61,6 +62,7 @@ export class AuthComponent implements OnInit {
   signIn(): void {
     this.userService.signIn(this.authData).subscribe(token => {
         console.log('Signed in');
+        window.location.reload();
       },
       error => {
         console.error(error);

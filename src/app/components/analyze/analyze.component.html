@@ -4,19 +4,13 @@
 </div>
 
 <div *ngIf="analyzeResult">
-  <div *ngIf="analyzeResult.errorMessages.length == 0">
-    Ошибок не обнаружено
-  </div>
+    <div *ngFor="let message of analyzeResult.messages">
 
-  <div *ngIf="analyzeResult.errorMessages.length > 0">
-    Обнаруженные ошибки:
-
-    <ul *ngFor="let errorMessage of analyzeResult.errorMessages">
-      <li>{{errorMessage}}</li>
-    </ul>
-  </div>
-
+      <div *ngIf="message.type == 'ERROR'" class="error infoPanel"><span class="secondaryText">{{message.type}}</span> {{message.message}}</div>
+      <div *ngIf="message.type == 'WARNING'" class="warning infoPanel"><span class="secondaryText">{{message.type}}</span> {{message.message}}</div>
+      <div *ngIf="message.type == 'INFO'" class="info infoPanel"><span class="secondaryText">{{message.type}}</span> {{message.message}}</div>
+    </div>
 </div>
 
-<button (click)="goBack()">Назад</button>
+<div (click)="goBack()" class="infoPanel">Назад</div>
 </body>

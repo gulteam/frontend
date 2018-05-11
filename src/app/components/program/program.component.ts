@@ -2,84 +2,69 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../service/user.service';
 import {Location} from '@angular/common';
-import {CourseService} from '../../service/course.service';
-import {Course} from '../../entity/course';
-import {Program} from '../../entity/program';
+import {User} from '../../entity/user';
+import {RolesService} from '../../service/roles.service';
+import {FacultyService} from '../../service/faculty.service';
+import {Faculty} from '../../entity/faculty';
 import {ProgramService} from '../../service/program.service';
-import {ModalService} from '../../service/modal.service';
+import {Program} from '../../entity/program';
+import {Fgos} from '../../entity/fgos';
+import {FgosService} from '../../service/fgos.service';
 
 @Component({
-  selector: 'app-test',
+  selector: 'program',
   templateUrl: './program.component.html',
   styleUrls: ['./program.component.css']
 })
 export class ProgramComponent implements OnInit {
-  courses: Map<Program, Course[]> = new Map();
-  programs: Program[];
+  program: Program;
+  allFgoses: Fgos[];
 
-  constructor(private userService: UserService,
+  constructor(private programService: ProgramService,
               private router: Router,
               private location: Location,
               private route: ActivatedRoute,
-              private courseService: CourseService,
-              private programService: ProgramService,
-              private modalService: ModalService) {
+              private fgosService: FgosService) {
   }
 
   ngOnInit() {
-    this.updateProgramList();
-  }
+    let id = +this.route.snapshot.paramMap.get('id');
 
-  updateProgramList(){
-    this.programService.getAllPrograms().subscribe(programs => {
-      this.programs = programs;
-      for(let program of programs){
-        this.updateCourseList(program);
-      }
+    this.programService.getProgram(id).subscribe(program => {
+      console.log(program);
+      this.program = program;
+
+      this.fgosService.getAllFgoses().subscribe(fgoses=>{
+        this.allFgoses = fgoses;
+        for(let tempFgos of fgoses){
+          if(tempFgos.id == this.program.fgos.id){
+            this.program.fgos = tempFgos;
+            break;
+          }
+        }
+      })
     });
   }
 
-  updateCourseList(program: Program) {
-    this.programService.getAllCoursesFromProgram(program.id).subscribe(courses => {
-      this.courses.set(program, courses);
+  save() {
+    this.programService.saveProgram(this.program).subscribe(message=>{
+      console.log('Program saved');
+      this.location.back();
     });
   }
 
-  deleteProgram(program: Program) {
-    this.programService.deleteProgram(program.id).subscribe(message => {
-      this.updateProgramList();
+  delete() {
+    this.programService.deleteProgram(this.program.id).subscribe(message => {
+      console.log('Program deleted');
+      this.location.back();
     });
   }
 
-  createCourse(program: Program) {
-    this.programService.addCourseToProgram(program.id).subscribe(course => {
-      this.updateCourseList(program);
-    });
+  cancel() {
+    this.location.back();
   }
 
-  createProgram() {
-    this.programService.addProgram().subscribe(program => {
-      this.updateProgramList();
-    });
-  }
+  onFgosChanged() {
 
-  courseClicked(course: Course) {
-    this.router.navigate(['/course', course.id]);
-  }
-
-  gotoSearch(program: Program) {
-    this.router.navigate(['/search', program.id]);
-  }
-
-  analyze(program: Program) {
-    this.router.navigate(['/analyze', program.id]);
-  }
-
-  openModal(id: string){
-    this.modalService.open(id);
-  }
-
-  closeModal(id: string){
-    this.modalService.close(id);
   }
 }

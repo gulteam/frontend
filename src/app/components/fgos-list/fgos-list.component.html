@@ -1,0 +1,8 @@
+<div *ngIf="fgosList && userService_.getPermissions() && userService_.getPermissions().canReadFgosList">
+  <div *ngFor="let fgos of fgosList" (click)="selectFgos(fgos)" class="infoPanel">
+    <span class="secondaryText">#{{fgos.id}}</span> {{fgos.code}} "{{fgos.name}}"
+  </div>
+</div>
+<div class="infoPanel" (click)="addFgos()" *ngIf="userService_.getPermissions() && userService_.getPermissions().canCreateFgos">Создать ФГОС</div>
+
+

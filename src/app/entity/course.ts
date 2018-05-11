@@ -1,4 +1,5 @@
 import {User} from './user';
+import {Faculty} from './faculty';
 
 export class Course{
   id: number;
@@ -20,5 +21,12 @@ export class Course{
 
   programId: number;
 
+  canUpdate: boolean;
+  canDelete: boolean;
+  canUpdateDevelopersList: boolean;
   createdBy: User;
+
+  department: Department;
+  faculty: Faculty;
+  developedBy: number[];
 }

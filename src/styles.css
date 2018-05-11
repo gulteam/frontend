@@ -21,7 +21,7 @@ h1 {
 }
 
 .secondaryText {
-  color: #CCCCCC;
+  color: #999999;
 }
 
 .infoPanel:hover{
@@ -39,6 +39,65 @@ h1 {
   border-left: 6px solid darkgrey;
   border-radius: 3px;
   color: #444444;
+}
+
+.trajectoryPanel:hover{
+  background: #008B8B11;
+  box-shadow: 0pt 2pt 5pt 0pt #008B8B44;
+  color: black;
+}
+
+.trajectoryPanel {
+  box-shadow: 0pt 1pt 1pt 0pt hsla(0, 0%, 0%, 0.05);
+  margin-top: 3pt;
+  margin-bottom: 3pt;
+  padding: 3pt;
+  border-radius: 3px;
+  color: #444444;
+}
+
+.searchPanel:hover{
+  background: #008B8B11;
+  box-shadow: 0pt 2pt 5pt 0pt #008B8B44;
+  color: black;
+}
+
+.searchPanel {
+  margin-top: 3pt;
+  margin-bottom: 3pt;
+  padding: 3pt;
+  border-radius: 3px;
+  color: #444444;
+  box-shadow: 1pt 1pt #b8b8b8;
+  width: 60%;
+  margin-left: 20%;
+  background-color: #efefef;
+  display: block;
+  position: relative;
+}
+
+.buttonStandart:hover{
+  background: rgba(192, 255, 226, 0.82);
+  //ox-shadow: 0pt 2pt 5pt 0pt rgba(10, 96, 83, 0.27);
+  color: black;
+}
+
+.buttonStandart {
+  box-shadow: 0pt 1pt 1pt 0pt hsla(0, 0%, 0%, 0.05);
+  background: rgb(236, 236, 236);
+  //margin-top: 3pt;
+  //margin-bottom: 3pt;
+  padding: 1pt;
+  border-radius: 3px;
+  color: #444444;
+}
+
+.course{
+  border-radius: 3px;
+}
+
+.course:hover {
+  background-color: #98d1ff;
 }
 
 .deletePanel:hover{
@@ -99,4 +158,23 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.grid-arguments {
+  display: grid;
+  grid-template-columns: 200px auto;
+}
+
+.grid-options-with-delete {
+  display: grid;
+  grid-template-columns: auto 90px;
+}
+
+.grid-options {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.grid-item {
+  padding: .2em;
 }
