@@ -41,7 +41,6 @@ export class UserComponent implements OnInit {
 
         let currentUserRole = this.userService.getSavedUser().role.name;
 
-        // Todo: dis looks like a kostyl. How can i change it?
         if (this.user.canChangeRole) {
           if (currentUserRole != 'ADMINISTRATOR') {
             this.roles = this.roles.filter(r => {

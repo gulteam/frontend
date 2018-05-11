@@ -5,7 +5,7 @@ import {UserService} from './user.service';
 import {CourseService} from './course.service';
 import {ProgramService} from './program.service';
 import {Variant} from '../entity/variant';
-import {Trajectory} from '../entity/Trajectory';
+import {Trajectory} from '../entity/trajectory';
 import {Program} from '../entity/program';
 import {SearchRequest} from '../entity/search-request';
 import {Course} from '../entity/course';
