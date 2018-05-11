@@ -1,0 +1,7 @@
+<div *ngIf="professionalStandards">
+  <button (click)="gotoProfSearch()">Поиск по проф. стандартов</button>
+  <button (click)="gotoAllProfessionalStandartStatuses()">Статусы проф. стандартов</button>
+  <div *ngFor="let professionalStandard of professionalStandards" class = "infoPanel">
+    <span (click)="professionalStandartClicked(professionalStandard)">Профессиональный стандарт №{{professionalStandard.id}} {{professionalStandard.name}}</span>
+  </div>
+</div>

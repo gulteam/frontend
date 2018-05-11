@@ -5,7 +5,12 @@ import {ProgramListComponent} from '../components/program-list/program-list.comp
 import {SearchComponent} from '../components/search/search.component';
 import {UserComponent} from '../components/user/user.component';
 import {UserListComponent} from '../components/users-list/user-list.component';
+import {AllProfessionalStandardComponent} from '../components/all_professional_standart/all_professional_standart.component';
+import {ProffesionalStandartComponent} from "../components/standart/standart.component";
+import {ProfSearchComponent} from "../components/profSearch/prof_search.component";
 import {AnalyzeComponent} from '../components/analyze/analyze.component';
+import {AllProfessionalStandardStatusComponent}from '../components/all_professional_standart_status/all_professional_standart_status.component';
+import {StatusComponent} from '../components/not-in-educational-for-standard/not-in-educational-for-standard.component';
 import {FacultiesComponent} from '../components/faculties/faculties.component';
 import {DepartmentComponent} from '../components/department/department.component';
 import {FacultyComponent} from '../components/faculty/faculty.component';
@@ -23,6 +28,13 @@ const routes: Routes = [
   {path: 'program/:id', component: ProgramComponent},
   {path: 'search/:id', component: SearchComponent},
   {path: 'analyze/:id', component: AnalyzeComponent},
+  {path: 'standart/:id', component: ProffesionalStandartComponent},
+  {path: 'status/:id', component: StatusComponent},
+  {path: 'allPrograms', component: ProgramComponent},
+  {path: 'allUsers', component: UserListComponent},
+  {path: 'allProfessionalStandarts', component: AllProfessionalStandardComponent},
+  {path: 'profSearch', component: ProfSearchComponent},
+  {path: 'allProfessionalStandartStatuses', component: AllProfessionalStandardStatusComponent},
   {path: 'department/:id', component: DepartmentComponent},
   {path: 'faculty/:id', component: FacultyComponent},
   {path: 'block/:id', component: BlockComponent},
