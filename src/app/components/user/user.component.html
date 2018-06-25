@@ -5,39 +5,39 @@
 
   <div class="grid-arguments">
     <div class="grid-item">Имя:</div>
-    <div class="grid-item"><input type="text" [(ngModel)]="user.firstName" [disabled]="user.canEdit==false"></div>
+    <div class="grid-item"><input class="textField" type="text" [(ngModel)]="user.firstName" [disabled]="user.canEdit==false"></div>
     <div class="grid-item">Фамилия:</div>
-    <div class="grid-item"><input type="text" [(ngModel)]="user.secondName" [disabled]="user.canEdit==false"></div>
+    <div class="grid-item"><input class="textField" type="text" [(ngModel)]="user.secondName" [disabled]="user.canEdit==false"></div>
     <div *ngIf="roles" class="grid-item">Роль:</div>
-    <div *ngIf="roles" class="grid-item"><select [(ngModel)]="user.role" [disabled]="user.canChangeRole==false">
+    <div *ngIf="roles" class="grid-item"><select class="textField" [(ngModel)]="user.role" [disabled]="user.canChangeRole==false">
       <option *ngFor="let role of roles" [ngValue]="role">{{role.name}}</option>
     </select></div>
     <div *ngIf="faculties" class="grid-item">Факультет:</div>
     <div *ngIf="faculties" class="grid-item">
-      <select [(ngModel)]="user.faculty" (change)="onFacultyChanged()" [disabled]="noFaculty || user.canChangeFacultyAndDepartment == false">
+      <select class="textField"  [(ngModel)]="user.faculty" (change)="onFacultyChanged()" [disabled]="noFaculty || user.canChangeFacultyAndDepartment == false">
         <option *ngFor="let faculty of faculties" [ngValue]="faculty">{{faculty.name}}</option>
       </select>
 
       <input type="checkbox" [checked]="!user.faculty" (change)="facultyStateChanged()" [(ngModel)]="noFaculty" [disabled]="user.canChangeFacultyAndDepartment == false">
-      Не привязан к факультету
+      <a class="secondaryText">Не привязан к факультету</a>
     </div>
 
     <div *ngIf="user.faculty && departments" class="grid-item">Кафедра:</div>
-    <div *ngIf="user.faculty && departments" class="grid-item"><select [(ngModel)]="user.department"
+    <div *ngIf="user.faculty && departments" class="grid-item"><select class="textField"  [(ngModel)]="user.department"
                                                                        [disabled]="noDepartment || user.canChangeFacultyAndDepartment == false">
       <option *ngFor="let department of departments" [ngValue]="department">{{department.name}}</option>
     </select>
 
       <input type="checkbox" [checked]="!user.department" (change)="departmentStateChanged()"
              [(ngModel)]="noDepartment" [disabled]="user.canChangeFacultyAndDepartment == false">
-      Не привязан к кафедре
+      <a class="secondaryText">Не привязан к кафедре</a>
     </div>
   </div>
 
   <div class="buttonPanel">
-    <span (click)="save()" class="infoPanel" *ngIf="user.canEdit == true || user.canChangeFacultyAndDepartment == true || user.canChangeRole == true">Сохранить изменения</span>
-    <span (click)="cancel()" class="infoPanel">Отмена</span>
-    <span (click)="delete()" class="deletePanel" *ngIf="user.canEdit == true">Удалить пользователя</span>
+    <span (click)="save()" class="primaryButton" *ngIf="user.canEdit == true || user.canChangeFacultyAndDepartment == true || user.canChangeRole == true">Сохранить изменения</span>
+    <span (click)="cancel()" class="primaryButton">Отмена</span>
+    <span (click)="delete()" class="deleteButton" *ngIf="user.canEdit == true">Удалить пользователя</span>
   </div>
 </div>
 </body>

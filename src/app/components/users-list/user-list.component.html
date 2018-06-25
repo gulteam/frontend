@@ -4,8 +4,9 @@
 
     <div *ngFor="let department of users.get(faculty).keys()" class="usersGroup">
       <span class="secondaryText" *ngIf="department.length > 0">Кафедра: {{department}}</span>
+      <span class="secondaryText" *ngIf="department.length == 0">Без кафедры</span>
 
-      <div *ngFor="let user of users.get(faculty).get(department)" (click)="selectUser(user)" class="infoPanel">
+      <div *ngFor="let user of users.get(faculty).get(department)" (click)="selectUser(user)" class="secondaryButton">
         <span class="secondaryText">#{{user.id}}</span> {{user.login}} :: {{user.firstName}} {{user.secondName}}
         <span class="secondaryText">({{user.role.name}})</span>
       </div>

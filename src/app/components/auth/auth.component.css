@@ -1,0 +1,24 @@
+.grid-column {
+  display: grid;
+  grid-template-columns: 100px;
+  column-gap: 5pt;
+  grid-row-gap: 10pt;
+}
+
+.authBlock{
+  position: absolute;
+  box-shadow: 0 2pt 5pt 0 hsla(0, 0%, 0%, 0.2);
+  padding: 2pt 7pt 2pt 2pt;
+  background: white;
+  border-radius: 3pt;
+  left: 10px;
+  width: 150pt;
+}
+
+.register{
+  top: 95pt;
+}
+
+.username{
+  margin-right: 1pt;
+}

@@ -1,27 +1,27 @@
-<body>
-<div *ngIf="!isLogged()">
-
-  <div>
-    <h2>Авторизация</h2>
-    <input [(ngModel)]="authData.login" placeholder="Логин">
-    <input [(ngModel)]="authData.password" type="password" placeholder="Пароль">
-    <span (click)="signIn()" class="infoPanel">Вход</span>
+<div class="authBlock register" *ngIf="!isLogged()">
+  <div class="grid-lines">
+    <div class="grid-item"><input [(ngModel)]="registerData.firstName" class="textField"  placeholder="Имя"></div>
+    <div class="grid-item"><input [(ngModel)]="registerData.secondName" class="textField"  placeholder="Фамилия"></div>
+    <div class="grid-item"><input [(ngModel)]="registerData.authData.login" class="textField"  placeholder="Логин"></div>
+    <div class="grid-item"><input [(ngModel)]="registerData.authData.password" class="textField"  type="password" placeholder="Пароль"></div>
+    <div class="grid-item"><div (click)="signUp()" class="primaryButton">Регистрация</div></div>
   </div>
-
-  <div>
-    <h2>Регистрация</h2>
-    <input [(ngModel)]="registerData.firstName" placeholder="Имя">
-    <input [(ngModel)]="registerData.secondName" placeholder="Фамилия">
-    <input [(ngModel)]="registerData.authData.login" placeholder="Логин">
-    <input [(ngModel)]="registerData.authData.password" type="password" placeholder="Пароль">
-    <span (click)="signUp()" class="infoPanel">Регистрация</span>
-  </div>
-
 </div>
 
-<div *ngIf="user">
-  Добро пожаловать, {{user.secondName}} {{user.firstName}}!
-  <a class="secondaryText">({{user.login}})</a>
-  <span (click)="signOut()" class="deletePanel">Выход</span>
+
+<div class="authBlock" *ngIf="!isLogged()">
+  <div class="grid-lines">
+    <div class="grid-item"><input class="textField" [(ngModel)]="authData.login" placeholder="Логин"></div>
+    <div class="grid-item"><input class="textField" [(ngModel)]="authData.password" type="password" placeholder="Пароль"></div>
+    <div class="grid-item"><div class="primaryButton" (click)="signIn()">Вход</div></div>
+  </div>
 </div>
-</body>
+
+<div *ngIf="user" class="authBlock">
+  <div class="username">
+    <a class="secondaryText">Добро пожаловать,</a>
+    {{user.secondName}} {{user.firstName}}!
+    <a class="secondaryText">({{user.login}})</a>
+  <div>
+  <div (click)="signOut()" class="primaryButton">Выход</div>
+</div>

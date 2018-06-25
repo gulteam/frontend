@@ -30,7 +30,7 @@ const routes: Routes = [
   {path: 'analyze/:id', component: AnalyzeComponent},
   {path: 'standart/:id', component: ProffesionalStandartComponent},
   {path: 'status/:id', component: StatusComponent},
-  {path: 'allPrograms', component: ProgramComponent},
+  {path: 'allPrograms', component: ProgramListComponent},
   {path: 'department/:id', component: DepartmentComponent},
   {path: 'faculty/:id', component: FacultyComponent},
   {path: 'block/:id', component: BlockComponent},

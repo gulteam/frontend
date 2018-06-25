@@ -1,23 +1,23 @@
 .error{
-  border-left: 6px solid darkred;
+  border-left: 2pt solid #e2531f;
+  background: #f4714277;
+  box-shadow: 0 1.5pt 1pt #7c250666;
 }
 
 .error:hover{
-  border-left: 6px solid red;
+  border-left: 2pt solid red;
 }
 
 .warning{
-  border-left: 6px solid darkorange;
+  border-left: 2pt solid darkorange;
+  background: #ff880055;
+  box-shadow: 0 1.5pt 1pt #44220077;
 }
 
 .warning:hover{
-  border-left: 6px solid orange;
+  border-left: 2pt solid orange;
 }
 
-.info{
-  border-left: 6px solid darkgrey;
-}
-
-.info:hover{
-  border-left: 6px solid grey;
+.secondaryButton{
+  text-align: left;
 }

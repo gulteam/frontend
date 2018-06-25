@@ -1,16 +1,16 @@
 <body>
 <div *ngIf="program">
-  <span>Образовательная программа №{{program.id}}</span> {{program.name}}
+  <span><a class="secondaryText">Анализ корректности ООП #{{program.id}}</a> </span> {{program.name}}
 </div>
 
-<div *ngIf="analyzeResult">
+<div *ngIf="analyzeResult" class="infoGroup">
     <div *ngFor="let message of analyzeResult.messages">
 
-      <div *ngIf="message.type == 'ERROR'" class="error infoPanel"><span class="secondaryText">{{message.type}}</span> {{message.message}}</div>
-      <div *ngIf="message.type == 'WARNING'" class="warning infoPanel"><span class="secondaryText">{{message.type}}</span> {{message.message}}</div>
-      <div *ngIf="message.type == 'INFO'" class="info infoPanel"><span class="secondaryText">{{message.type}}</span> {{message.message}}</div>
+      <div *ngIf="message.type == 'ERROR'" class="error secondaryButton"><span class="secondaryText"></span> {{message.message}}</div>
+      <div *ngIf="message.type == 'WARNING'" class="warning secondaryButton"><span class="secondaryText"></span> {{message.message}}</div>
+      <div *ngIf="message.type == 'INFO'" class="info secondaryButton"><span class="secondaryText"></span> {{message.message}}</div>
     </div>
 </div>
 
-<div (click)="goBack()" class="infoPanel">Назад</div>
+<div (click)="goBack()" class="primaryButton">Назад</div>
 </body>

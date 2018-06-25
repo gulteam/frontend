@@ -1,15 +1,17 @@
-h1 {
-  color: darkcyan;
+.header {
+  color: #2572ed;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
+  font-size: 150%;
+  text-align: center;
 }
 
 .block{
-  width: 90%;
+  width: calc(90% - 150pt);
   box-shadow: 0pt 2pt 5pt 0pt hsla(0, 0%, 0%, 0.2);
-  margin-left: 5%;
+  margin-left: 170pt;
   margin-top: 10pt;
   padding: 5pt;
+  padding-right: 10pt;
   background: white;
   border-radius: 3px;
 }
@@ -117,19 +119,6 @@ h1 {
   color: #444444;
 }
 
-.infoGroup {
-  box-shadow: 0pt 2pt 5pt 0pt hsla(0, 0%, 0%, 0.2);
-  margin-top: 6pt;
-  padding: 5pt;
-  border-top: 3px solid darkcyan;
-  border-radius: 3px;
-}
-
-.buttonPanel{
-  margin-top: 6pt;
-  margin-bottom: 6pt;
-}
-
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -168,6 +157,8 @@ h1 {
 .grid-options-with-delete {
   display: grid;
   grid-template-columns: auto 90px;
+  grid-row-gap: 10pt;
+  column-gap: 10pt;
 }
 
 .grid-options {
@@ -177,4 +168,129 @@ h1 {
 
 .grid-item {
   padding: .2em;
+}
+
+
+/* Primary button -  типичная кнопка */
+.primaryButton:hover{
+  background-color: #6a9ced;
+  border-left: 2pt solid #4286f4;
+}
+
+.primaryButton:active{
+  background-color: #2572ed;
+  border-left: 2pt solid #0952c6;
+}
+
+.primaryButton {
+  width: 100%;
+  padding: 2pt 3pt 2pt 2pt;
+  border-radius: 2pt;
+  margin-top: 3pt;
+  font-size: 12pt;
+
+  color: white;
+  background-color: #4286f4;
+  box-shadow: 0 1.5pt 1pt #0952c666;
+  border-left: 2pt solid #2572ed;
+
+  text-align: center;
+}
+
+/* Secondary button -  не такая важная кнопка */
+.secondaryButton:hover{
+  background-color: #6a9ced05;
+  border-left: 2pt solid #4286f4;
+}
+
+.secondaryButton:active{
+  background-color: #2572ed22;
+  border-left: 2pt solid #0952c6;
+}
+
+.secondaryButton {
+  width: 100%;
+  padding: 2pt 3pt 2pt 2pt;
+  border-radius: 2pt;
+  margin-top: 3pt;
+  font-size: 12pt;
+
+  background-color: #4286f411;
+  box-shadow: 0 1.5pt 1pt #0952c666;
+  border-left: 2pt solid #2572ed;
+
+  text-align: center;
+}
+
+
+/* Delete button -  кнопка удаления */
+.deleteButton:hover{
+  background-color: #ed8863;
+  border-left: 2pt solid #f47142;
+}
+
+.deleteButton:active{
+  background-color: #e2531f;
+  border-left: 2pt solid #7c2506;
+}
+
+.deleteButton {
+  width: 100%;
+  padding: 2pt 3pt 2pt 2pt;
+  border-radius: 2pt;
+  margin-top: 3pt;
+  font-size: 12pt;
+
+  color: white;
+  background-color: #f47142;
+  box-shadow: 0 1.5pt 1pt #7c250666;
+  border-left: 2pt solid #e2531f;
+
+  text-align: center;
+}
+
+/* Однострочное текстовое поле */
+
+.textField:focus{
+  border-left: 2pt solid #6a9ced;
+}
+
+.textField{
+  width: 100%;
+  padding: 2pt;
+  font-size: 12pt;
+
+  border-style: none;
+  box-shadow: 0 1pt 1pt #0952c622;
+  border-left: 2pt solid #2572ed;
+}
+
+.infoGroup {
+  border-bottom: 1px solid gray;
+  padding-bottom: 10pt;
+  margin-bottom: 10pt;
+}
+
+.buttonPanel{
+  text-align: center;
+  margin-top: 4pt;
+  margin-bottom: 4pt;
+}
+
+.buttonPanelLeft{
+  text-align: left;
+  margin-top: 4pt;
+  margin-bottom: 4pt;
+}
+
+/*Спойлеры для сокрытия информации, если таковой млишком много */
+.spoiler > input+.box{
+  display: none;
+}
+.spoiler > input:checked +.box{
+  display: block;
+}
+
+.box{
+  padding-top: 5pt;
 }

@@ -1,4 +1,4 @@
-<span (click)="createFaculty()" class="infoPanel simpleButton" *ngIf="userService_.getPermissions().canEditFacultiesAndDepartments == true">Добавить факультет</span>
+<span (click)="createFaculty()" class="infoPanel primaryButton" *ngIf="userService_.getPermissions().canEditFacultiesAndDepartments == true">Добавить факультет</span>
 
 <div *ngIf="faculties">
   <span *ngFor="let faculty of faculties">
